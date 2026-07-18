@@ -1,0 +1,15 @@
+INFO:     127.0.0.1:51766 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51768 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53644 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53644 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53652 - "GET /redoc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53926 - "GET /redoc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53998 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53998 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53927 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53927 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54362 - "GET /api/ia/modelos-guardados/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54366 - "GET /api/ia/modelos-guardados/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54411 - "GET /api/ia/eda/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54414 - "POST /api/ia/comparar-modelos HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54418 - "POST /api/ia/entrenar-comparar HTTP/1.1" 200 OK

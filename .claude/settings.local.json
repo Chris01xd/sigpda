@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($env:PYTHONIOENCODING = \"utf-8\"; Set-Location \"C:\\\\Users\\\\JDS\\\\Downloads\\\\files\\\\sigpda_completo\\\\sigpda\"; & \".\\\\venv\\\\Scripts\\\\python.exe\" -m scripts.inicializar_bd 2>&1)"
+    ]
+  }
+}

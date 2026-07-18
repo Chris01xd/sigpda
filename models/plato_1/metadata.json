@@ -1,0 +1,44 @@
+{
+  "id_plato": 1,
+  "nombre_plato": "Cabrito a la Norteña",
+  "tipo_modelo": "prophet",
+  "tipo_modelo_legible": "Prophet",
+  "id_ejecucion": null,
+  "hiperparametros": {
+    "hiperparametros": {
+      "yearly_seasonality": false,
+      "weekly_seasonality": true,
+      "daily_seasonality": false,
+      "seasonality_mode": "multiplicative",
+      "changepoint_prior_scale": 0.05,
+      "seasonality_prior_scale": 10.0
+    }
+  },
+  "metricas": {
+    "mae": 0.444,
+    "rmse": 0.547,
+    "mape": 18.2106,
+    "smape": 16.7531,
+    "r2": -2.9686
+  },
+  "fecha_entrenamiento": "2026-07-13T22:13:29.182194+00:00",
+  "rango_temporal_datos": {
+    "inicio": "2026-01-31",
+    "fin": "2026-06-14"
+  },
+  "n_registros": 79,
+  "version_modelo": "1.0",
+  "versiones_librerias": {
+    "python": "3.11.9",
+    "numpy": "1.26.3",
+    "pandas": "2.2.0",
+    "scikit_learn": "1.4.0",
+    "statsmodels": "0.14.6"
+  },
+  "hash_datos": "1e665dc714322889",
+  "semilla": 42,
+  "contexto_prediccion": {
+    "ventas_7d": 3.857142857142857,
+    "cat_enc": 3
+  }
+}

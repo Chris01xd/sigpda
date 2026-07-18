@@ -1,0 +1,107 @@
+version: "3.9"
+
+# =================================================================
+# SIGPDA v2.0 - FastAPI Backend + React Frontend
+# Servicios:
+#   - db       : PostgreSQL 15
+#   - backend  : FastAPI (uvicorn)
+#   - frontend : React (Vite/nginx)
+#   - n8n      : Automatización
+# =================================================================
+
+services:
+
+  db:
+    image: postgres:15-alpine
+    container_name: sigpda_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sigpda
+      POSTGRES_USER: sigpda_user
+      POSTGRES_PASSWORD: sigpda_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - sigpda_db_data:/var/lib/postgresql/data
+      - ./database/esquema.sql:/docker-entrypoint-initdb.d/01_esquema.sql:ro
+      - ./datos_prueba/inserts.sql:/docker-entrypoint-initdb.d/02_inserts.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sigpda_user -d sigpda"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sigpda_net
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: sigpda_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      TIPO_BD: postgresql
+      PG_HOST: db
+      PG_PUERTO: 5432
+      PG_USUARIO: sigpda_user
+      PG_PASSWORD: sigpda_pass
+      PG_BD: sigpda
+      N8N_WEBHOOK_URL: http://n8n:5678/webhook/sigpda
+      N8N_HABILITADO: "true"
+      NOMBRE_SISTEMA: SIGPDA
+      MONEDA: S/
+      UMBRAL_DESPERDICIO_PORCENTAJE: "15"
+      SECRET_KEY: cambiar-esta-llave-en-produccion
+      DURACION_SESION_MINUTOS: "120"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    working_dir: /app
+    networks:
+      - sigpda_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sigpda_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - sigpda_net
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: sigpda_n8n
+    restart: unless-stopped
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      WEBHOOK_URL: http://localhost:5678/
+      GENERIC_TIMEZONE: America/Lima
+      TZ: America/Lima
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: admin
+      N8N_BASIC_AUTH_PASSWORD: admin123
+    ports:
+      - "5678:5678"
+    volumes:
+      - sigpda_n8n_data:/home/node/.n8n
+    networks:
+      - sigpda_net
+
+volumes:
+  sigpda_db_data:
+  sigpda_n8n_data:
+
+networks:
+  sigpda_net:
+    driver: bridge
