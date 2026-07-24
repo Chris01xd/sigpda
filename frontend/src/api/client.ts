@@ -4,6 +4,17 @@ const api = axios.create({ baseURL: '/api' })
 
 // Interceptor de request: siempre lee el token del localStorage
 api.interceptors.request.use((config) => {
+  // Los endpoints de coleccion del backend terminan en una barra y FastAPI
+  // tiene desactivados los redirects automaticos. En desarrollo Vite
+  // normaliza estas rutas; en Vercel debemos hacerlo antes de enviarlas.
+  if (config.url) {
+    const [pathname, query] = config.url.split('?')
+    const segments = pathname.split('/').filter(Boolean)
+    if (segments.length === 1 && !pathname.endsWith('/')) {
+      config.url = pathname + '/' + (query ? '?' + query : '')
+    }
+  }
+
   const token = localStorage.getItem('token')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
