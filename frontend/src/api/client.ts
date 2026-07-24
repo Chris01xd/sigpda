@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api' })
+const baseURL = import.meta.env.PROD
+  ? 'https://sigpda.onrender.com/api'
+  : '/api'
+
+const api = axios.create({ baseURL })
 
 // Interceptor de request: siempre lee el token del localStorage
 api.interceptors.request.use((config) => {
