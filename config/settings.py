@@ -27,6 +27,10 @@ PG_USUARIO = os.getenv("PG_USUARIO", "postgres")
 PG_PASSWORD = os.getenv("PG_PASSWORD", "postgres")
 PG_BD = os.getenv("PG_BD", "sigpda")
 
+# Cadena de conexión completa (ej. la que entrega Neon/Supabase). Si está
+# presente, tiene prioridad sobre las variables PG_* sueltas.
+DATABASE_URL = os.getenv("DATABASE_URL", "")
+
 # SQLite
 SQLITE_RUTA = os.getenv("SQLITE_RUTA", "database/sigpda.db")
 
@@ -34,6 +38,13 @@ SQLITE_RUTA = os.getenv("SQLITE_RUTA", "database/sigpda.db")
 def obtener_url_bd() -> str:
     """Construye la URL de conexión a la base de datos según el tipo."""
     if TIPO_BD == "postgresql":
+        if DATABASE_URL:
+            url = DATABASE_URL
+            if url.startswith("postgres://"):
+                url = "postgresql+psycopg2://" + url[len("postgres://"):]
+            elif url.startswith("postgresql://"):
+                url = "postgresql+psycopg2://" + url[len("postgresql://"):]
+            return url
         return (
             f"postgresql+psycopg2://{PG_USUARIO}:{PG_PASSWORD}"
             f"@{PG_HOST}:{PG_PUERTO}/{PG_BD}"
