@@ -22,6 +22,12 @@ app = FastAPI(
     redirect_slashes=False,
 )
 
+# Orígenes adicionales para producción (ej. dominio de Vercel), separados por coma
+# en la variable de entorno CORS_ORIGENES_EXTRA. El frontend en producción llama a
+# la API a través del proxy/rewrite de Vercel (mismo origen), así que esto es
+# solo una red de seguridad para accesos directos al backend.
+_origenes_extra = [o.strip() for o in os.getenv("https://sigpda.vercel.app", "").split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -29,6 +35,7 @@ app.add_middleware(
         "http://localhost:3000",
         "http://127.0.0.1:5173",
         "http://127.0.0.1:3000",
+        *_origenes_extra,
     ],
     allow_credentials=True,
     allow_methods=["*"],

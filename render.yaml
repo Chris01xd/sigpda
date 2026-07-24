@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: sigpda-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: TIPO_BD
+        value: postgresql
+      # Cadena de conexión de Neon/Supabase — pegarla manualmente en el
+      # dashboard de Render (Environment). No se guarda en este archivo.
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DURACION_SESION_MINUTOS
+        value: "480"
+      # Clave de Google Gemini — pegarla manualmente en el dashboard de Render.
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: CHATBOT_MODEL
+        value: gemini-flash-latest
+      - key: CHATBOT_MAX_TOKENS
+        value: "1024"
+      # Dominio(s) de Vercel adicionales para CORS, separados por coma.
+      # Ej: https://sigpda.vercel.app
+      - key: CORS_ORIGENES_EXTRA
+        sync: false
+      - key: N8N_HABILITADO
+        value: "false"
+      - key: NOMBRE_SISTEMA
+        value: SIGPDA
+      - key: MONEDA
+        value: S/
+      - key: UMBRAL_DESPERDICIO_PORCENTAJE
+        value: "12"
+      - key: ZONA_HORARIA
+        value: America/Lima
