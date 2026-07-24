@@ -2,18 +2,23 @@ import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer,
 } from 'recharts'
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { AlertTriangle, ClipboardList, CalendarDays, Copy, Sigma } from 'lucide-react'
 import type { EdaResultado } from '../../types/ia'
 
-const ETIQUETAS_CORRELACION: Record<string, string> = {
-  cantidad: 'Cantidad',
-  precio: 'Precio',
-  dia_semana: 'Día sem.',
-  mes: 'Mes',
-  es_finde: 'Fin sem.',
-  clima: 'Clima',
-  evento: 'Evento',
-  ventas_7d: 'Ventas 7d',
+function etiquetaCorrelacion(t: TFunction, campo: string): string {
+  const mapa: Record<string, string> = {
+    cantidad: t('eda.correlacion_campos.cantidad'),
+    precio: t('eda.correlacion_campos.precio'),
+    dia_semana: t('eda.correlacion_campos.dia_semana'),
+    mes: t('eda.correlacion_campos.mes'),
+    es_finde: t('eda.correlacion_campos.es_finde'),
+    clima: t('eda.correlacion_campos.clima'),
+    evento: t('eda.correlacion_campos.evento'),
+    ventas_7d: t('eda.correlacion_campos.ventas_7d'),
+  }
+  return mapa[campo] || campo
 }
 
 function colorCorrelacion(v: number | null): string {
@@ -31,6 +36,7 @@ interface Props {
 }
 
 export default function EdaPanel({ data }: Props) {
+  const { t } = useTranslation('ia_paneles')
   const {
     resumen, estadisticas_descriptivas: stats, valores_faltantes,
     duplicados, outliers, serie_historica, distribucion,
@@ -68,7 +74,7 @@ export default function EdaPanel({ data }: Props) {
     return (
       <div className="card flex flex-col items-center justify-center py-12 text-center">
         <ClipboardList className="w-12 h-12 text-gray-200 mb-3" />
-        <p className="text-gray-500 font-medium">Sin datos históricos para este plato</p>
+        <p className="text-gray-500 font-medium">{t('eda.sin_datos')}</p>
         {advertencias.map((a, i) => (
           <p key={i} className="text-xs text-gray-400 mt-1">{a}</p>
         ))}
@@ -95,36 +101,36 @@ export default function EdaPanel({ data }: Props) {
       {/* Tarjetas resumen */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="card py-3">
-          <p className="text-xs text-gray-500">Registros</p>
+          <p className="text-xs text-gray-500">{t('eda.registros')}</p>
           <p className="text-xl font-bold text-gray-800">{resumen.registros_transacciones}</p>
-          <p className="text-xs text-gray-400">{resumen.dias_con_venta} días con venta</p>
+          <p className="text-xs text-gray-400">{t('eda.dias_con_venta', { n: resumen.dias_con_venta })}</p>
         </div>
         <div className="card py-3">
-          <p className="text-xs text-gray-500 flex items-center gap-1"><CalendarDays className="w-3 h-3" /> Periodo</p>
+          <p className="text-xs text-gray-500 flex items-center gap-1"><CalendarDays className="w-3 h-3" /> {t('eda.periodo')}</p>
           <p className="text-sm font-bold text-gray-800">{resumen.fecha_inicio} → {resumen.fecha_fin}</p>
-          <p className="text-xs text-gray-400">{resumen.dias_cubiertos} días cubiertos</p>
+          <p className="text-xs text-gray-400">{t('eda.dias_cubiertos', { n: resumen.dias_cubiertos })}</p>
         </div>
         <div className="card py-3">
-          <p className="text-xs text-gray-500 flex items-center gap-1"><Copy className="w-3 h-3" /> Duplicados</p>
+          <p className="text-xs text-gray-500 flex items-center gap-1"><Copy className="w-3 h-3" /> {t('eda.duplicados')}</p>
           <p className="text-xl font-bold text-gray-800">{duplicados}</p>
-          <p className="text-xs text-gray-400">{totalFaltantes} valor(es) faltante(s)</p>
+          <p className="text-xs text-gray-400">{t('eda.valores_faltantes', { n: totalFaltantes })}</p>
         </div>
         <div className="card py-3">
-          <p className="text-xs text-gray-500 flex items-center gap-1"><Sigma className="w-3 h-3" /> Outliers (IQR)</p>
+          <p className="text-xs text-gray-500 flex items-center gap-1"><Sigma className="w-3 h-3" /> {t('eda.outliers_iqr')}</p>
           <p className="text-xl font-bold text-gray-800">{outliers.cantidad}</p>
           <p className="text-xs text-gray-400">
-            límites {fmt(outliers.limite_inferior)} – {fmt(outliers.limite_superior)}
+            {t('eda.limites', { inferior: fmt(outliers.limite_inferior), superior: fmt(outliers.limite_superior) })}
           </p>
         </div>
       </div>
 
       {/* Estadísticas descriptivas */}
       <div className="card">
-        <h3 className="text-sm font-semibold text-gray-700 mb-3">Estadísticas descriptivas (demanda diaria)</h3>
+        <h3 className="text-sm font-semibold text-gray-700 mb-3">{t('eda.estadisticas_descriptivas_titulo')}</h3>
         <div className="grid grid-cols-4 md:grid-cols-8 gap-2 text-center">
           {([
-            ['Media', stats.media], ['Mediana', stats.mediana], ['Desv. Est.', stats.desviacion_estandar],
-            ['Mínimo', stats.minimo], ['Máximo', stats.maximo], ['Q1', stats.q1],
+            [t('eda.media'), stats.media], [t('eda.mediana'), stats.mediana], [t('eda.desviacion_estandar'), stats.desviacion_estandar],
+            [t('eda.minimo'), stats.minimo], [t('eda.maximo'), stats.maximo], ['Q1', stats.q1],
             ['Q3', stats.q3], ['IQR', stats.rango_intercuartilico],
           ] as [string, number | undefined][]).map(([label, val]) => (
             <div key={label} className="bg-gray-50 rounded-lg p-2">
@@ -137,7 +143,7 @@ export default function EdaPanel({ data }: Props) {
         {/* Boxplot simplificado */}
         {boxplot && (
           <div className="mt-5">
-            <p className="text-xs text-gray-500 mb-2">Boxplot (mín — Q1 — mediana — Q3 — máx)</p>
+            <p className="text-xs text-gray-500 mb-2">{t('eda.boxplot_titulo')}</p>
             <div className="relative h-8">
               <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-0.5 bg-gray-300" />
               <div
@@ -153,7 +159,7 @@ export default function EdaPanel({ data }: Props) {
                   key={i}
                   className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-500"
                   style={{ left: `${p}%` }}
-                  title="Outlier"
+                  title={t('eda.outlier_tooltip')}
                 />
               ))}
             </div>
@@ -168,9 +174,9 @@ export default function EdaPanel({ data }: Props) {
       {/* Serie histórica */}
       <div className="card">
         <h3 className="text-sm font-semibold text-gray-700 mb-3">
-          Evolución histórica de la demanda
+          {t('eda.evolucion_titulo')}
           <span className="text-xs font-normal text-gray-400 ml-2">
-            (puntos en naranja = días interpolados por ausencia de venta registrada)
+            {t('eda.evolucion_nota')}
           </span>
         </h3>
         <ResponsiveContainer width="100%" height={220}>
@@ -199,7 +205,7 @@ export default function EdaPanel({ data }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Histograma de distribución */}
         <div className="card">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">Distribución de la demanda</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">{t('eda.distribucion_titulo')}</h3>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={distribucionData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -213,13 +219,13 @@ export default function EdaPanel({ data }: Props) {
 
         {/* Demanda por día de semana */}
         <div className="card">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">Demanda promedio por día de semana</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">{t('eda.dia_semana_titulo')}</h3>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={por_dia_semana}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="dia_semana" tick={{ fontSize: 9 }} interval={0} angle={-20} textAnchor="end" height={40} />
               <YAxis tick={{ fontSize: 10 }} />
-              <Tooltip formatter={(v: number) => [v.toFixed(2), 'Demanda promedio']} />
+              <Tooltip formatter={(v: number) => [v.toFixed(2), t('eda.demanda_promedio')]} />
               <Bar dataKey="demanda_promedio" fill="#8b5cf6" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -229,13 +235,13 @@ export default function EdaPanel({ data }: Props) {
       {/* Demanda por mes */}
       {por_mes.length > 0 && (
         <div className="card">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">Demanda promedio por mes</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">{t('eda.mes_titulo')}</h3>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={por_mes}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="mes" tick={{ fontSize: 10 }} />
               <YAxis tick={{ fontSize: 10 }} />
-              <Tooltip formatter={(v: number) => [v.toFixed(2), 'Demanda promedio']} />
+              <Tooltip formatter={(v: number) => [v.toFixed(2), t('eda.demanda_promedio')]} />
               <Bar dataKey="demanda_promedio" fill="#0ea5e9" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -245,7 +251,7 @@ export default function EdaPanel({ data }: Props) {
       {/* Mapa de calor de correlaciones */}
       {columnasCorr.length > 0 && (
         <div className="card">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">Correlación entre variables numéricas</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">{t('eda.correlacion_titulo')}</h3>
           <div className="overflow-x-auto">
             <table className="text-xs border-collapse">
               <thead>
@@ -253,7 +259,7 @@ export default function EdaPanel({ data }: Props) {
                   <th className="p-1" />
                   {columnasCorr.map((c) => (
                     <th key={c} className="p-1 font-medium text-gray-500" style={{ writingMode: 'vertical-rl' }}>
-                      {ETIQUETAS_CORRELACION[c] || c}
+                      {etiquetaCorrelacion(t, c)}
                     </th>
                   ))}
                 </tr>
@@ -262,7 +268,7 @@ export default function EdaPanel({ data }: Props) {
                 {columnasCorr.map((fila) => (
                   <tr key={fila}>
                     <td className="p-1 pr-2 font-medium text-gray-500 whitespace-nowrap">
-                      {ETIQUETAS_CORRELACION[fila] || fila}
+                      {etiquetaCorrelacion(t, fila)}
                     </td>
                     {columnasCorr.map((col) => {
                       const v = correlaciones[fila]?.[col] ?? null
@@ -271,7 +277,7 @@ export default function EdaPanel({ data }: Props) {
                           key={col}
                           className="w-10 h-8 text-center align-middle"
                           style={{ backgroundColor: colorCorrelacion(v) }}
-                          title={`${fila} vs ${col}: ${v === null ? 'sin variación' : v}`}
+                          title={t('eda.correlacion_detalle', { fila, col, valor: v === null ? t('eda.sin_variacion') : v })}
                         >
                           {v === null ? '' : v.toFixed(2)}
                         </td>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FileDown, FileText, CheckCircle2, XCircle } from 'lucide-react'
 import api from '../api/client'
 
 export default function Reportes() {
+  const { t } = useTranslation('reportes')
   const [loading, setLoading]   = useState(false)
   const [estado,  setEstado]    = useState<'idle' | 'ok' | 'error'>('idle')
   const [mensaje, setMensaje]   = useState('')
@@ -20,10 +22,10 @@ export default function Reportes() {
       link.click()
       URL.revokeObjectURL(url)
       setEstado('ok')
-      setMensaje('Reporte descargado correctamente.')
+      setMensaje(t('descargado_ok'))
     } catch {
       setEstado('error')
-      setMensaje('Error al generar el reporte. Verifica que haya datos registrados.')
+      setMensaje(t('error_generar'))
     } finally {
       setLoading(false)
     }
@@ -34,10 +36,10 @@ export default function Reportes() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="w-6 h-6 text-indigo-600" />
-          Reportes
+          {t('titulo')}
         </h1>
         <p className="text-sm text-gray-500 mt-1">
-          Generación de reportes ejecutivos en PDF para dirección y análisis
+          {t('subtitulo')}
         </p>
       </div>
 
@@ -49,21 +51,20 @@ export default function Reportes() {
               <FileDown className="w-7 h-7 text-indigo-600" />
             </div>
             <div>
-              <h2 className="font-semibold text-gray-800 text-base">Reporte Ejecutivo Semanal</h2>
+              <h2 className="font-semibold text-gray-800 text-base">{t('semanal.titulo')}</h2>
               <p className="text-sm text-gray-500 mt-1">
-                PDF con KPIs del período, huella de carbono e hídrica, top desperdicios por costo,
-                ahorro económico comparativo y alertas inteligentes activas.
+                {t('semanal.descripcion')}
               </p>
             </div>
           </div>
 
           <div className="bg-gray-50 rounded-lg p-3 text-xs text-gray-500 space-y-1">
-            <p>✓ Resumen de la semana (registros y costos)</p>
-            <p>✓ Huella ambiental — CO₂, agua, equivalencias</p>
-            <p>✓ Top platos con mayor desperdicio</p>
-            <p>✓ Ahorro económico vs período anterior</p>
-            <p>✓ Alertas inteligentes pendientes</p>
-            <p>✓ Recomendaciones operativas</p>
+            <p>✓ {t('semanal.items.resumen')}</p>
+            <p>✓ {t('semanal.items.huella')}</p>
+            <p>✓ {t('semanal.items.top_desperdicio')}</p>
+            <p>✓ {t('semanal.items.ahorro')}</p>
+            <p>✓ {t('semanal.items.alertas')}</p>
+            <p>✓ {t('semanal.items.recomendaciones')}</p>
           </div>
 
           {estado === 'ok' && (
@@ -83,25 +84,22 @@ export default function Reportes() {
             className="btn-primary flex items-center justify-center gap-2 py-2.5 disabled:opacity-60"
           >
             <FileDown className="w-4 h-4" />
-            {loading ? 'Generando PDF...' : 'Descargar Reporte PDF'}
+            {loading ? t('semanal.generando') : t('semanal.descargar')}
           </button>
         </div>
 
         {/* Info */}
         <div className="card p-6 bg-indigo-50 border border-indigo-100">
-          <h3 className="font-semibold text-indigo-800 mb-3">¿Para qué sirve este reporte?</h3>
+          <h3 className="font-semibold text-indigo-800 mb-3">{t('info.titulo')}</h3>
           <div className="space-y-3 text-sm text-indigo-700">
             <p>
-              <span className="font-medium">Para el dueño del restaurante:</span> resumen ejecutivo semanal
-              con los indicadores más importantes sin necesidad de ingresar al sistema.
+              <span className="font-medium">{t('info.dueno_label')}</span> {t('info.dueno_texto')}
             </p>
             <p>
-              <span className="font-medium">Para auditorías:</span> evidencia documentada del
-              control del desperdicio alimentario con métricas verificables.
+              <span className="font-medium">{t('info.auditorias_label')}</span> {t('info.auditorias_texto')}
             </p>
             <p>
-              <span className="font-medium">Para la tesis:</span> el reporte incluye la huella de carbono
-              calculada con factores FAO 2023, alineado con los ODS 12 (Producción y Consumo Responsable).
+              <span className="font-medium">{t('info.tesis_label')}</span> {t('info.tesis_texto')}
             </p>
           </div>
         </div>

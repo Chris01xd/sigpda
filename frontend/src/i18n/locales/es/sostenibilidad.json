@@ -1,0 +1,47 @@
+{
+  "titulo": "Sostenibilidad e Impacto Ambiental",
+  "subtitulo": "Huella de carbono e hídrica generada por el desperdicio alimentario",
+  "calculando": "Calculando...",
+  "periodos": {
+    "dias_7": "7 días",
+    "dias_30": "30 días",
+    "dias_90": "90 días"
+  },
+  "kpi": {
+    "co2_equivalente": "CO₂ Equivalente",
+    "agua_desperdiciada": "Agua desperdiciada",
+    "alimentos_desperdiciados": "Alimentos desperdiciados",
+    "costo_desperdiciado": "Costo desperdiciado",
+    "ultimos_dias": "últimos {{dias}} días"
+  },
+  "equivalencias": {
+    "titulo": "Equivalencias del impacto ambiental",
+    "arboles_linea1": "árboles necesarios un año",
+    "arboles_linea2": "para absorber este CO₂",
+    "auto_linea1": "km en auto equivalentes",
+    "auto_linea2": "(0.21 kg CO₂/km promedio)",
+    "duchas_linea1": "duchas de 8 min equivalentes",
+    "duchas_linea2": "(65 L por ducha)",
+    "factores_emision": "Factores de emisión: FAO / Our World in Data 2023"
+  },
+  "ahorro": {
+    "titulo": "Ahorro Económico",
+    "costo_actual": "Costo este período",
+    "costo_anterior": "Costo período anterior",
+    "ahorro_perdida": "Ahorro / pérdida",
+    "porcentaje_mejora": "% de mejora",
+    "total_historico": "Total histórico desperdiciado",
+    "mensaje_mejora": "El restaurante redujo su desperdicio en S/ {{monto}} respecto al período anterior",
+    "mensaje_empeora": "El desperdicio aumentó S/ {{monto}} respecto al período anterior",
+    "mensaje_sin_cambio": "Sin cambio respecto al período anterior"
+  },
+  "categoria": {
+    "titulo": "Impacto por categoría de alimento",
+    "sin_datos": "Sin datos en el período",
+    "tabla": {
+      "categoria": "Categoría",
+      "agua": "Agua",
+      "costo": "Costo"
+    }
+  }
+}

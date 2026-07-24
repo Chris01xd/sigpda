@@ -1,0 +1,72 @@
+{
+  "titulo": "智能警报",
+  "subtitulo": "内部预防性警报引擎 — 不依赖外部服务",
+  "config": {
+    "clima": "天气",
+    "clima_opciones": {
+      "soleado": "晴天",
+      "nublado": "多云",
+      "lluvioso": "雨天"
+    },
+    "evento": "活动",
+    "evento_opciones": {
+      "sin_evento": "无活动",
+      "evento_local": "本地活动",
+      "feriado_nacional": "国家假日"
+    },
+    "generar": "生成警报",
+    "generando": "生成中..."
+  },
+  "mensajes": {
+    "generadas": "已生成 {{count}} 条新警报。",
+    "error_cargar": "加载警报时出错",
+    "error_generar": "生成警报时出错"
+  },
+  "resumen": {
+    "total": "总计"
+  },
+  "filtros": {
+    "estado": "状态",
+    "estados": {
+      "pendiente": "待处理",
+      "leida": "已读",
+      "resuelta": "已解决"
+    },
+    "tipo": "类型",
+    "nivel": "级别",
+    "todos": "全部",
+    "limpiar": "清除筛选"
+  },
+  "tipos": {
+    "RIESGO_SOBREPRODUCCION": "生产过剩风险",
+    "PRODUCTO_PROXIMO_VENCER": "临近过期",
+    "STOCK_EXCESIVO": "库存过多",
+    "BAJA_DEMANDA": "需求低",
+    "ALTO_DESPERDICIO": "浪费严重",
+    "RECOMENDACION_MENU": "菜单建议",
+    "ALERTA_CRITICA": "严重警报"
+  },
+  "lista": {
+    "cargando": "正在加载警报...",
+    "vacio": "没有符合所选筛选条件的{{estado}}警报。",
+    "ayuda_generar": "使用“生成警报”来分析系统当前状态。"
+  },
+  "tarjeta": {
+    "riesgo": "风险 {{valor}}%",
+    "ver_detalle": "查看详情",
+    "marcar_leida": "标记为已读",
+    "resolver": "解决"
+  },
+  "modal": {
+    "descripcion": "描述",
+    "recomendacion": "运营建议",
+    "plato": "菜品",
+    "insumo": "原料",
+    "porcentaje_riesgo": "风险百分比",
+    "valor_actual": "当前值",
+    "generada": "生成时间",
+    "estado": "状态",
+    "marcar_leida": "标记为已读",
+    "resolver_alerta": "解决警报"
+  }
+}

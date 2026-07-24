@@ -1,0 +1,22 @@
+{
+  "titulo": "Recetas",
+  "subtitulo": "Ingredientes por plato",
+  "boton_agregar": "Agregar Ingrediente",
+  "confirmar_eliminar": "¿Eliminar receta?",
+  "tabla": {
+    "plato": "Plato",
+    "insumo": "Insumo",
+    "cantidad": "Cantidad",
+    "unidad": "Unidad"
+  },
+  "modal": {
+    "titulo": "Agregar Ingrediente a Receta"
+  },
+  "formulario": {
+    "plato": "Plato",
+    "insumo": "Insumo",
+    "seleccionar": "Seleccionar...",
+    "cantidad": "Cantidad",
+    "unidad": "Unidad"
+  }
+}

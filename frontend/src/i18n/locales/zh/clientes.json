@@ -1,0 +1,25 @@
+{
+  "titulo": "客户",
+  "subtitulo": "客户数据库",
+  "boton_nuevo": "新增客户",
+  "confirmar_eliminar": "确定删除该客户吗？",
+  "tabla": {
+    "nombre": "姓名",
+    "tipo_doc": "证件类型",
+    "documento": "证件号",
+    "telefono": "电话",
+    "correo": "邮箱"
+  },
+  "modal": {
+    "nuevo": "新增客户",
+    "editar": "编辑客户"
+  },
+  "formulario": {
+    "nombre_completo": "全名",
+    "tipo_documento": "证件类型",
+    "numero_documento": "证件号码",
+    "telefono": "电话",
+    "correo": "邮箱",
+    "direccion": "地址"
+  }
+}

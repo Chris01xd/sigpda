@@ -1,0 +1,27 @@
+{
+  "titulo": "Suppliers",
+  "subtitulo": "Supplier management",
+  "nuevo_proveedor": "New Supplier",
+  "confirmar_eliminar": "Delete supplier?",
+  "tabla": {
+    "nombre": "Name",
+    "tipo_documento": "Doc. Type",
+    "numero_documento": "Document",
+    "contacto": "Contact",
+    "telefono": "Phone",
+    "correo": "Email"
+  },
+  "modal": {
+    "editar_titulo": "Edit Supplier",
+    "nuevo_titulo": "New Supplier",
+    "nombre": "Name *",
+    "tipo_documento": "Document type",
+    "numero_documento": "Document No. *",
+    "contacto": "Contact",
+    "telefono": "Phone",
+    "correo": "Email",
+    "direccion": "Address",
+    "cancelar": "Cancel",
+    "guardar": "Save"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "titulo": "Dashboard",
+  "subtitulo": "Resumen del sistema en tiempo real",
+  "kpi": {
+    "ventas_mes": "Ventas este mes",
+    "ventas_hoy": "Ventas hoy",
+    "transacciones": "transacciones",
+    "costo_desperdicio_mes": "Costo desperdicio (mes)",
+    "stock_critico": "Stock crítico",
+    "insumos_bajo_minimo": "insumos bajo mínimo",
+    "alertas_criticas": "Alertas críticas",
+    "pendientes_atencion": "pendientes de atención"
+  },
+  "eficiencia": {
+    "titulo": "Índice de Eficiencia Operativa",
+    "produccion": "Producción",
+    "alertas": "Alertas",
+    "desperdicio": "Desperdicio"
+  },
+  "graficos": {
+    "ventas_30_dias": "Ventas últimos 30 días",
+    "total": "Total",
+    "desperdicio_por_motivo": "Desperdicio por motivo",
+    "costo": "Costo",
+    "sin_datos_desperdicio": "Sin datos de desperdicio",
+    "top_platos": "Top 10 platos más vendidos"
+  },
+  "alertas": {
+    "titulo": "Alertas inteligentes",
+    "ver_todas": "Ver todas",
+    "sin_pendientes": "Sin alertas pendientes"
+  }
+}

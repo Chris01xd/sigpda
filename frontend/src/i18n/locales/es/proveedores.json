@@ -1,0 +1,27 @@
+{
+  "titulo": "Proveedores",
+  "subtitulo": "Gestión de proveedores",
+  "nuevo_proveedor": "Nuevo Proveedor",
+  "confirmar_eliminar": "¿Eliminar proveedor?",
+  "tabla": {
+    "nombre": "Nombre",
+    "tipo_documento": "Tipo Doc.",
+    "numero_documento": "Documento",
+    "contacto": "Contacto",
+    "telefono": "Teléfono",
+    "correo": "Correo"
+  },
+  "modal": {
+    "editar_titulo": "Editar Proveedor",
+    "nuevo_titulo": "Nuevo Proveedor",
+    "nombre": "Nombre *",
+    "tipo_documento": "Tipo documento",
+    "numero_documento": "N° Documento *",
+    "contacto": "Contacto",
+    "telefono": "Teléfono",
+    "correo": "Correo",
+    "direccion": "Dirección",
+    "cancelar": "Cancelar",
+    "guardar": "Guardar"
+  }
+}

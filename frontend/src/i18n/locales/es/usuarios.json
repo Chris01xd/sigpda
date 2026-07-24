@@ -1,0 +1,28 @@
+{
+  "titulo": "Usuarios",
+  "subtitulo": "Gestión de accesos al sistema",
+  "nuevo_usuario": "Nuevo Usuario",
+  "confirmar_eliminar": "¿Eliminar usuario?",
+  "tabla": {
+    "nombre": "Nombre",
+    "usuario": "Usuario",
+    "correo": "Correo",
+    "rol": "Rol",
+    "estado": "Estado"
+  },
+  "modal": {
+    "editar_titulo": "Editar Usuario",
+    "nuevo_titulo": "Nuevo Usuario"
+  },
+  "formulario": {
+    "nombre": "Nombre *",
+    "apellido": "Apellido *",
+    "usuario": "Usuario *",
+    "correo": "Correo *",
+    "contrasena": "Contraseña *",
+    "nueva_contrasena": "Nueva contraseña",
+    "contrasena_placeholder_editar": "Dejar vacío para no cambiar",
+    "rol": "Rol *",
+    "usuario_activo": "Usuario activo"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "titulo": "Desperdicio",
+  "subtitulo": "Registro de mermas y desperdicios",
+  "boton_registrar": "Registrar Desperdicio",
+  "tabla": {
+    "fecha": "Fecha",
+    "tipo": "Tipo",
+    "item": "Item",
+    "motivo": "Motivo",
+    "cantidad": "Cantidad",
+    "costo": "Costo"
+  },
+  "modal": {
+    "titulo": "Registrar Desperdicio"
+  },
+  "formulario": {
+    "tipo": "Tipo",
+    "opcion_plato": "Plato",
+    "opcion_insumo": "Insumo",
+    "plato": "Plato",
+    "insumo": "Insumo",
+    "seleccionar": "Seleccionar...",
+    "fecha": "Fecha",
+    "motivo": "Motivo",
+    "cantidad": "Cantidad",
+    "unidad_medida": "Unidad medida",
+    "costo_estimado": "Costo estimado (S/)",
+    "observaciones": "Observaciones"
+  }
+}

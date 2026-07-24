@@ -1,0 +1,25 @@
+{
+  "titulo": "Customers",
+  "subtitulo": "Customer database",
+  "boton_nuevo": "New Customer",
+  "confirmar_eliminar": "Delete customer?",
+  "tabla": {
+    "nombre": "Name",
+    "tipo_doc": "Doc. Type",
+    "documento": "Document",
+    "telefono": "Phone",
+    "correo": "Email"
+  },
+  "modal": {
+    "nuevo": "New Customer",
+    "editar": "Edit Customer"
+  },
+  "formulario": {
+    "nombre_completo": "Full name",
+    "tipo_documento": "Document type",
+    "numero_documento": "Document number",
+    "telefono": "Phone",
+    "correo": "Email",
+    "direccion": "Address"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "titulo": "Waste",
+  "subtitulo": "Record of waste and losses",
+  "boton_registrar": "Register Waste",
+  "tabla": {
+    "fecha": "Date",
+    "tipo": "Type",
+    "item": "Item",
+    "motivo": "Reason",
+    "cantidad": "Quantity",
+    "costo": "Cost"
+  },
+  "modal": {
+    "titulo": "Register Waste"
+  },
+  "formulario": {
+    "tipo": "Type",
+    "opcion_plato": "Dish",
+    "opcion_insumo": "Supply",
+    "plato": "Dish",
+    "insumo": "Supply",
+    "seleccionar": "Select...",
+    "fecha": "Date",
+    "motivo": "Reason",
+    "cantidad": "Quantity",
+    "unidad_medida": "Unit of measure",
+    "costo_estimado": "Estimated cost (S/)",
+    "observaciones": "Notes"
+  }
+}

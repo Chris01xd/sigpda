@@ -1,0 +1,22 @@
+{
+  "titulo": "Producción",
+  "subtitulo": "Control de producción diaria",
+  "registrar": "Registrar Producción",
+  "tabla": {
+    "fecha": "Fecha",
+    "plato": "Plato",
+    "preparado": "Preparado",
+    "vendido": "Vendido",
+    "sobrante": "Sobrante",
+    "observaciones": "Observaciones"
+  },
+  "formulario": {
+    "plato": "Plato *",
+    "seleccionar": "Seleccionar...",
+    "fecha": "Fecha",
+    "cantidad_preparada": "Cantidad preparada *",
+    "cantidad_vendida": "Cantidad vendida",
+    "cantidad_sobrante": "Cantidad sobrante",
+    "observaciones": "Observaciones"
+  }
+}

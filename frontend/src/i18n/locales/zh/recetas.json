@@ -1,0 +1,22 @@
+{
+  "titulo": "配方",
+  "subtitulo": "每道菜品的食材",
+  "boton_agregar": "添加食材",
+  "confirmar_eliminar": "确定删除该配方吗？",
+  "tabla": {
+    "plato": "菜品",
+    "insumo": "物资",
+    "cantidad": "数量",
+    "unidad": "单位"
+  },
+  "modal": {
+    "titulo": "向配方添加食材"
+  },
+  "formulario": {
+    "plato": "菜品",
+    "insumo": "物资",
+    "seleccionar": "请选择...",
+    "cantidad": "数量",
+    "unidad": "单位"
+  }
+}

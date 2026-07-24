@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ShoppingCart, Trash2, AlertTriangle, TrendingUp, BellRing, Gauge } from 'lucide-react'
 import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid,
@@ -29,6 +30,7 @@ const NIVEL_STYLE: Record<string, string> = {
 
 export default function Dashboard() {
   const navigate = useNavigate()
+  const { t } = useTranslation('dashboard')
   const [kpis, setKpis] = useState<Record<string, number>>({})
   const [ventas, setVentas] = useState<{ fecha: string; total: number }[]>([])
   const [desperdicios, setDesperdicios] = useState<{ motivo: string; costo: number }[]>([])
@@ -48,41 +50,41 @@ export default function Dashboard() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
-        <p className="text-sm text-gray-500">Resumen del sistema en tiempo real</p>
+        <h1 className="text-2xl font-bold text-gray-800">{t('titulo')}</h1>
+        <p className="text-sm text-gray-500">{t('subtitulo')}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-8">
         <StatCard
-          title="Ventas este mes"
+          title={t('kpi.ventas_mes')}
           value={`S/ ${(kpis.ventas_mes || 0).toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
           icon={<TrendingUp className="w-6 h-6" />}
           color="green"
         />
         <StatCard
-          title="Ventas hoy"
+          title={t('kpi.ventas_hoy')}
           value={kpis.num_ventas_hoy || 0}
-          subtitle="transacciones"
+          subtitle={t('kpi.transacciones')}
           icon={<ShoppingCart className="w-6 h-6" />}
           color="blue"
         />
         <StatCard
-          title="Costo desperdicio (mes)"
+          title={t('kpi.costo_desperdicio_mes')}
           value={`S/ ${(kpis.costo_desperdicio_mes || 0).toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
           icon={<Trash2 className="w-6 h-6" />}
           color="red"
         />
         <StatCard
-          title="Stock crítico"
+          title={t('kpi.stock_critico')}
           value={kpis.stock_critico || 0}
-          subtitle="insumos bajo mínimo"
+          subtitle={t('kpi.insumos_bajo_minimo')}
           icon={<AlertTriangle className="w-6 h-6" />}
           color="yellow"
         />
         <StatCard
-          title="Alertas críticas"
+          title={t('kpi.alertas_criticas')}
           value={kpis.alertas_criticas || 0}
-          subtitle="pendientes de atención"
+          subtitle={t('kpi.pendientes_atencion')}
           icon={<BellRing className="w-6 h-6" />}
           color="red"
         />
@@ -103,7 +105,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-4 shrink-0">
                 <Gauge className={`w-6 h-6 ${c.text}`} />
                 <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Índice de Eficiencia Operativa</p>
+                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{t('eficiencia.titulo')}</p>
                   <p className={`text-4xl font-bold ${c.text}`}>
                     {eficiencia.indice}<span className="text-lg font-normal">/100</span>
                   </p>
@@ -112,15 +114,15 @@ export default function Dashboard() {
               </div>
               <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
-                  { label: 'Producción', key: 'produccion', peso: 40 },
-                  { label: 'Alertas',    key: 'alertas',    peso: 30 },
-                  { label: 'Desperdicio',key: 'desperdicio',peso: 30 },
-                ].map(({ label, key, peso }) => {
+                  { labelKey: 'eficiencia.produccion', key: 'produccion', peso: 40 },
+                  { labelKey: 'eficiencia.alertas',    key: 'alertas',    peso: 30 },
+                  { labelKey: 'eficiencia.desperdicio',key: 'desperdicio',peso: 30 },
+                ].map(({ labelKey, key, peso }) => {
                   const v = comp[key]
                   return (
                     <div key={key}>
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-gray-600 font-medium">{label} <span className="text-gray-400">({peso}%)</span></span>
+                        <span className="text-gray-600 font-medium">{t(labelKey)} <span className="text-gray-400">({peso}%)</span></span>
                         <span className="font-semibold text-gray-700">{v.puntaje}</span>
                       </div>
                       <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -138,20 +140,20 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
         <div className="xl:col-span-2 card">
-          <h2 className="text-base font-semibold text-gray-700 mb-4">Ventas últimos 30 días</h2>
+          <h2 className="text-base font-semibold text-gray-700 mb-4">{t('graficos.ventas_30_dias')}</h2>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={ventas}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="fecha" tick={{ fontSize: 11 }} tickFormatter={(v) => v.slice(5)} />
               <YAxis tick={{ fontSize: 11 }} />
-              <Tooltip formatter={(v) => [`S/ ${Number(v).toFixed(2)}`, 'Total']} />
+              <Tooltip formatter={(v) => [`S/ ${Number(v).toFixed(2)}`, t('graficos.total')]} />
               <Line type="monotone" dataKey="total" stroke="#6366f1" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>
 
         <div className="card">
-          <h2 className="text-base font-semibold text-gray-700 mb-4">Desperdicio por motivo</h2>
+          <h2 className="text-base font-semibold text-gray-700 mb-4">{t('graficos.desperdicio_por_motivo')}</h2>
           {desperdicios.length > 0 ? (
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
@@ -160,13 +162,13 @@ export default function Dashboard() {
                     <Cell key={i} fill={COLORS[i % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(v) => [`S/ ${Number(v).toFixed(2)}`, 'Costo']} />
+                <Tooltip formatter={(v) => [`S/ ${Number(v).toFixed(2)}`, t('graficos.costo')]} />
                 <Legend iconSize={10} wrapperStyle={{ fontSize: 11 }} />
               </PieChart>
             </ResponsiveContainer>
           ) : (
             <div className="h-[220px] flex items-center justify-center text-gray-400 text-sm">
-              Sin datos de desperdicio
+              {t('graficos.sin_datos_desperdicio')}
             </div>
           )}
         </div>
@@ -174,7 +176,7 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         <div className="xl:col-span-2 card">
-          <h2 className="text-base font-semibold text-gray-700 mb-4">Top 10 platos más vendidos</h2>
+          <h2 className="text-base font-semibold text-gray-700 mb-4">{t('graficos.top_platos')}</h2>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={topPlatos} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -189,17 +191,17 @@ export default function Dashboard() {
         <div className="card">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-gray-700 flex items-center gap-2">
-              <BellRing className="w-4 h-4 text-orange-500" /> Alertas inteligentes
+              <BellRing className="w-4 h-4 text-orange-500" /> {t('alertas.titulo')}
             </h2>
             <button
               onClick={() => navigate('/alertas-inteligentes')}
               className="text-xs text-primary-600 hover:underline"
             >
-              Ver todas
+              {t('alertas.ver_todas')}
             </button>
           </div>
           {alertas.length === 0 ? (
-            <p className="text-sm text-gray-400">Sin alertas pendientes</p>
+            <p className="text-sm text-gray-400">{t('alertas.sin_pendientes')}</p>
           ) : (
             <div className="space-y-2 max-h-[220px] overflow-y-auto">
               {alertas.map((a) => (

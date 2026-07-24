@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   BellRing, RefreshCw, CheckCheck, Eye,
   AlertTriangle, TrendingDown, Package, Clock,
@@ -50,26 +51,12 @@ const TIPO_ICON: Record<string, JSX.Element> = {
   ALERTA_CRITICA:          <ShieldAlert   className="w-5 h-5 text-red-600" />,
 }
 
-const TIPO_LABEL: Record<string, string> = {
-  RIESGO_SOBREPRODUCCION:  'Sobreproducción',
-  PRODUCTO_PROXIMO_VENCER: 'Próximo a vencer',
-  STOCK_EXCESIVO:          'Stock excesivo',
-  BAJA_DEMANDA:            'Baja demanda',
-  ALTO_DESPERDICIO:        'Alto desperdicio',
-  RECOMENDACION_MENU:      'Recomendación menú',
-  ALERTA_CRITICA:          'Alerta crítica',
-}
-
 const TIPOS_FILTRO = [
   'RIESGO_SOBREPRODUCCION', 'PRODUCTO_PROXIMO_VENCER', 'STOCK_EXCESIVO',
   'BAJA_DEMANDA', 'ALTO_DESPERDICIO', 'RECOMENDACION_MENU', 'ALERTA_CRITICA',
 ]
 const NIVELES_FILTRO = ['CRITICO', 'ALTO', 'MEDIO', 'BAJO']
-const ESTADOS_FILTRO = [
-  { value: 'pendiente', label: 'Pendientes' },
-  { value: 'leida',     label: 'Leídas'     },
-  { value: 'resuelta',  label: 'Resueltas'  },
-]
+const ESTADOS_FILTRO = ['pendiente', 'leida', 'resuelta']
 
 function fmtDate(iso: string | null) {
   if (!iso) return '—'
@@ -82,6 +69,7 @@ function fmtDate(iso: string | null) {
 // ——— Component ——————————————————————————————————————
 
 export default function AlertasInteligentes() {
+  const { t } = useTranslation('alertas_inteligentes')
   const [alertas, setAlertas]         = useState<Alerta[]>([])
   const [loading, setLoading]         = useState(false)
   const [generating, setGenerating]   = useState(false)
@@ -109,7 +97,7 @@ export default function AlertasInteligentes() {
 
     api.get('/alertas-inteligentes', { params })
       .then((r) => setAlertas(r.data))
-      .catch(() => setError('Error al cargar alertas'))
+      .catch(() => setError(t('mensajes.error_cargar')))
       .finally(() => setLoading(false))
   }
 
@@ -122,10 +110,10 @@ export default function AlertasInteligentes() {
     api.post('/alertas-inteligentes/generar', { clima, evento })
       .then((r) => {
         const { total_generadas } = r.data
-        setSuccess(`Se generaron ${total_generadas} alerta(s) nueva(s).`)
+        setSuccess(t('mensajes.generadas', { count: total_generadas }))
         cargar()
       })
-      .catch(() => setError('Error al generar alertas'))
+      .catch(() => setError(t('mensajes.error_generar')))
       .finally(() => setGenerating(false))
   }
 
@@ -153,36 +141,36 @@ export default function AlertasInteligentes() {
         <div>
           <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
             <BellRing className="w-6 h-6 text-orange-500" />
-            Alertas Inteligentes
+            {t('titulo')}
           </h1>
           <p className="text-sm text-gray-500 mt-1">
-            Motor interno de alertas preventivas — sin dependencias externas
+            {t('subtitulo')}
           </p>
         </div>
 
         <div className="flex flex-wrap items-end gap-3">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-gray-500">Clima</label>
+            <label className="text-xs font-medium text-gray-500">{t('config.clima')}</label>
             <select
               value={clima}
               onChange={(e) => setClima(Number(e.target.value))}
               className="input text-sm py-1.5 pr-7"
             >
-              <option value={1}>☀️ Soleado</option>
-              <option value={2}>☁️ Nublado</option>
-              <option value={3}>🌧️ Lluvioso</option>
+              <option value={1}>☀️ {t('config.clima_opciones.soleado')}</option>
+              <option value={2}>☁️ {t('config.clima_opciones.nublado')}</option>
+              <option value={3}>🌧️ {t('config.clima_opciones.lluvioso')}</option>
             </select>
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-gray-500">Evento</label>
+            <label className="text-xs font-medium text-gray-500">{t('config.evento')}</label>
             <select
               value={evento}
               onChange={(e) => setEvento(Number(e.target.value))}
               className="input text-sm py-1.5 pr-7"
             >
-              <option value={0}>Sin evento</option>
-              <option value={1}>Evento local</option>
-              <option value={2}>Feriado nacional</option>
+              <option value={0}>{t('config.evento_opciones.sin_evento')}</option>
+              <option value={1}>{t('config.evento_opciones.evento_local')}</option>
+              <option value={2}>{t('config.evento_opciones.feriado_nacional')}</option>
             </select>
           </div>
           <button
@@ -191,7 +179,7 @@ export default function AlertasInteligentes() {
             className="btn-primary flex items-center gap-2 py-2"
           >
             <RefreshCw className={`w-4 h-4 ${generating ? 'animate-spin' : ''}`} />
-            {generating ? 'Generando...' : 'Generar alertas'}
+            {generating ? t('config.generando') : t('config.generar')}
           </button>
         </div>
       </div>
@@ -208,7 +196,7 @@ export default function AlertasInteligentes() {
           </span>
         ))}
         <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
-          Total: {alertas.length}
+          {t('resumen.total')}: {alertas.length}
         </span>
       </div>
 
@@ -216,44 +204,44 @@ export default function AlertasInteligentes() {
       <div className="card mb-6 flex flex-wrap gap-4 items-end">
         <Filter className="w-4 h-4 text-gray-400 mt-auto mb-1" />
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-gray-500">Estado</label>
+          <label className="text-xs font-medium text-gray-500">{t('filtros.estado')}</label>
           <div className="flex gap-1">
             {ESTADOS_FILTRO.map((e) => (
               <button
-                key={e.value}
-                onClick={() => setFilEstado(e.value)}
+                key={e}
+                onClick={() => setFilEstado(e)}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                  filEstado === e.value
+                  filEstado === e
                     ? 'bg-primary-600 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                {e.label}
+                {t(`filtros.estados.${e}`)}
               </button>
             ))}
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-gray-500">Tipo</label>
+          <label className="text-xs font-medium text-gray-500">{t('filtros.tipo')}</label>
           <select
             value={filTipo}
             onChange={(e) => setFilTipo(e.target.value)}
             className="input text-sm py-1.5 pr-7"
           >
-            <option value="">Todos</option>
-            {TIPOS_FILTRO.map((t) => (
-              <option key={t} value={t}>{TIPO_LABEL[t]}</option>
+            <option value="">{t('filtros.todos')}</option>
+            {TIPOS_FILTRO.map((tipo) => (
+              <option key={tipo} value={tipo}>{t(`tipos.${tipo}`)}</option>
             ))}
           </select>
         </div>
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-gray-500">Nivel</label>
+          <label className="text-xs font-medium text-gray-500">{t('filtros.nivel')}</label>
           <select
             value={filNivel}
             onChange={(e) => setFilNivel(e.target.value)}
             className="input text-sm py-1.5 pr-7"
           >
-            <option value="">Todos</option>
+            <option value="">{t('filtros.todos')}</option>
             {NIVELES_FILTRO.map((n) => (
               <option key={n} value={n}>{n}</option>
             ))}
@@ -264,19 +252,19 @@ export default function AlertasInteligentes() {
             onClick={() => { setFilTipo(''); setFilNivel('') }}
             className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 mt-auto mb-1"
           >
-            <X className="w-3 h-3" /> Limpiar filtros
+            <X className="w-3 h-3" /> {t('filtros.limpiar')}
           </button>
         )}
       </div>
 
       {/* Lista de alertas */}
       {loading ? (
-        <div className="text-center py-16 text-gray-400">Cargando alertas...</div>
+        <div className="text-center py-16 text-gray-400">{t('lista.cargando')}</div>
       ) : alertas.length === 0 ? (
         <div className="text-center py-16 text-gray-400">
           <BellRing className="w-10 h-10 mx-auto mb-3 opacity-30" />
-          <p>No hay alertas {filEstado} con los filtros seleccionados.</p>
-          <p className="text-xs mt-1">Usa "Generar alertas" para analizar el estado actual del sistema.</p>
+          <p>{t('lista.vacio', { estado: t(`filtros.estados.${filEstado}`).toLowerCase() })}</p>
+          <p className="text-xs mt-1">{t('lista.ayuda_generar')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -294,7 +282,7 @@ export default function AlertasInteligentes() {
                   </span>
                 </div>
                 <span className="text-xs text-gray-400 shrink-0">
-                  {TIPO_LABEL[a.tipo_alerta] ?? a.tipo_alerta}
+                  {t(`tipos.${a.tipo_alerta}`, { defaultValue: a.tipo_alerta })}
                 </span>
               </div>
 
@@ -310,7 +298,7 @@ export default function AlertasInteligentes() {
                   <span>📌 {a.plato ?? a.insumo}</span>
                 )}
                 {a.porcentaje_riesgo != null && (
-                  <span>⚠️ {a.porcentaje_riesgo.toFixed(1)} % riesgo</span>
+                  <span>⚠️ {t('tarjeta.riesgo', { valor: a.porcentaje_riesgo.toFixed(1) })}</span>
                 )}
                 <span>{fmtDate(a.fecha_generacion)}</span>
               </div>
@@ -321,14 +309,14 @@ export default function AlertasInteligentes() {
                   onClick={() => setDetalle(a)}
                   className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
                 >
-                  <Eye className="w-3.5 h-3.5" /> Ver detalle
+                  <Eye className="w-3.5 h-3.5" /> {t('tarjeta.ver_detalle')}
                 </button>
                 {a.estado === 'pendiente' && (
                   <button
                     onClick={() => marcarLeida(a.id_alerta)}
                     className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
                   >
-                    <Eye className="w-3.5 h-3.5" /> Marcar leída
+                    <Eye className="w-3.5 h-3.5" /> {t('tarjeta.marcar_leida')}
                   </button>
                 )}
                 {a.estado !== 'resuelta' && (
@@ -336,7 +324,7 @@ export default function AlertasInteligentes() {
                     onClick={() => resolver(a.id_alerta)}
                     className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors"
                   >
-                    <CheckCheck className="w-3.5 h-3.5" /> Resolver
+                    <CheckCheck className="w-3.5 h-3.5" /> {t('tarjeta.resolver')}
                   </button>
                 )}
               </div>
@@ -368,39 +356,39 @@ export default function AlertasInteligentes() {
                 </button>
               </div>
               <h2 className="font-bold text-gray-800 text-base mt-3 leading-tight">{detalle.titulo}</h2>
-              <p className="text-xs text-gray-500 mt-1">{TIPO_LABEL[detalle.tipo_alerta]}</p>
+              <p className="text-xs text-gray-500 mt-1">{t(`tipos.${detalle.tipo_alerta}`, { defaultValue: detalle.tipo_alerta })}</p>
             </div>
 
             <div className="p-5 space-y-4">
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Descripción</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{t('modal.descripcion')}</p>
                 <p className="text-sm text-gray-700">{detalle.descripcion}</p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Recomendación operativa</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{t('modal.recomendacion')}</p>
                 <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
                   <p className="text-sm text-indigo-800">{detalle.recomendacion}</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 {detalle.plato && (
-                  <div><p className="text-xs text-gray-400">Plato</p><p className="font-medium">{detalle.plato}</p></div>
+                  <div><p className="text-xs text-gray-400">{t('modal.plato')}</p><p className="font-medium">{detalle.plato}</p></div>
                 )}
                 {detalle.insumo && (
-                  <div><p className="text-xs text-gray-400">Insumo</p><p className="font-medium">{detalle.insumo}</p></div>
+                  <div><p className="text-xs text-gray-400">{t('modal.insumo')}</p><p className="font-medium">{detalle.insumo}</p></div>
                 )}
                 {detalle.porcentaje_riesgo != null && (
-                  <div><p className="text-xs text-gray-400">% Riesgo</p><p className="font-medium">{detalle.porcentaje_riesgo.toFixed(1)} %</p></div>
+                  <div><p className="text-xs text-gray-400">{t('modal.porcentaje_riesgo')}</p><p className="font-medium">{detalle.porcentaje_riesgo.toFixed(1)} %</p></div>
                 )}
                 {detalle.valor_actual != null && (
-                  <div><p className="text-xs text-gray-400">Valor actual</p><p className="font-medium">{detalle.valor_actual.toFixed(2)}</p></div>
+                  <div><p className="text-xs text-gray-400">{t('modal.valor_actual')}</p><p className="font-medium">{detalle.valor_actual.toFixed(2)}</p></div>
                 )}
                 <div>
-                  <p className="text-xs text-gray-400">Generada</p>
+                  <p className="text-xs text-gray-400">{t('modal.generada')}</p>
                   <p className="font-medium">{fmtDate(detalle.fecha_generacion)}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400">Estado</p>
+                  <p className="text-xs text-gray-400">{t('modal.estado')}</p>
                   <p className="font-medium capitalize">{detalle.estado}</p>
                 </div>
               </div>
@@ -410,7 +398,7 @@ export default function AlertasInteligentes() {
                     onClick={() => { marcarLeida(detalle.id_alerta); setDetalle(null) }}
                     className="flex-1 btn-secondary py-2 text-sm flex items-center justify-center gap-2"
                   >
-                    <Eye className="w-4 h-4" /> Marcar leída
+                    <Eye className="w-4 h-4" /> {t('modal.marcar_leida')}
                   </button>
                 )}
                 {detalle.estado !== 'resuelta' && (
@@ -418,7 +406,7 @@ export default function AlertasInteligentes() {
                     onClick={() => resolver(detalle.id_alerta)}
                     className="flex-1 btn-primary py-2 text-sm flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700"
                   >
-                    <CheckCheck className="w-4 h-4" /> Resolver alerta
+                    <CheckCheck className="w-4 h-4" /> {t('modal.resolver_alerta')}
                   </button>
                 )}
               </div>

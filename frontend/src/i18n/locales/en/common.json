@@ -1,0 +1,72 @@
+{
+  "app": {
+    "nombre": "SIGPDA",
+    "version": "v2.0",
+    "tagline": "Intelligent Food Waste Management and Prediction System",
+    "footer": "Thesis System — Version 2.0"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "ventas": "Sales",
+    "produccion": "Production",
+    "desperdicio": "Waste",
+    "platos": "Dishes",
+    "insumos": "Supplies",
+    "recetas": "Recipes",
+    "clientes": "Customers",
+    "proveedores": "Suppliers",
+    "restaurantes": "Restaurants",
+    "usuarios": "Users",
+    "recomendaciones": "Recommendations",
+    "ia": "AI / Predictions",
+    "alertas_inteligentes": "Smart Alerts",
+    "estadisticas": "Statistics",
+    "bitacora": "Activity Log",
+    "pedidos": "Orders",
+    "sostenibilidad": "Sustainability",
+    "reportes": "PDF Reports",
+    "configuracion": "Settings"
+  },
+  "sidebar": {
+    "cerrar_sesion": "Log out",
+    "idioma": "Language"
+  },
+  "acciones": {
+    "guardar": "Save",
+    "cancelar": "Cancel",
+    "editar": "Edit",
+    "eliminar": "Delete",
+    "nuevo": "New",
+    "buscar": "Search",
+    "ver": "View",
+    "ver_todas": "View all",
+    "exportar": "Export",
+    "cerrar": "Close",
+    "confirmar": "Confirm",
+    "descargar": "Download",
+    "actualizar": "Refresh",
+    "reintentar": "Retry"
+  },
+  "estado": {
+    "activo": "Active",
+    "inactivo": "Inactive",
+    "cargando": "Loading...",
+    "sin_datos": "No data",
+    "error": "An error occurred",
+    "pendiente": "Pending",
+    "completado": "Completed"
+  },
+  "tabla": {
+    "sin_datos": "No data",
+    "de": "of"
+  },
+  "login": {
+    "usuario": "Username",
+    "usuario_placeholder": "Enter your username",
+    "contrasena": "Password",
+    "contrasena_placeholder": "Enter your password",
+    "iniciar_sesion": "Sign in",
+    "iniciando_sesion": "Signing in...",
+    "error_generico": "Login failed"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "titulo": "Statistics",
+  "subtitulo": "Historical analysis of the system",
+  "kpi": {
+    "ventas_mes": "Sales this month",
+    "ventas_anio": "Sales this year",
+    "desperdicio_mes": "Waste (month)",
+    "transacciones_mes": "Transactions (month)",
+    "ventas": "sales"
+  },
+  "graficos": {
+    "ventas_mensuales": "Monthly sales (12 months)",
+    "costo_desperdicio_mensual": "Monthly waste cost",
+    "total": "Total",
+    "total_ventas": "Total sales",
+    "costo_desperdicio": "Waste cost"
+  }
+}

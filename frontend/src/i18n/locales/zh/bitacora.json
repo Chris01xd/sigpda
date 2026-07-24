@@ -1,0 +1,23 @@
+{
+  "titulo": "日志",
+  "subtitulo": "系统活动记录",
+  "filtros": {
+    "modulo": "模块",
+    "modulo_placeholder": "筛选模块...",
+    "resultado": "结果",
+    "todos": "全部",
+    "exito": "成功",
+    "error": "错误",
+    "advertencia": "警告"
+  },
+  "tabla": {
+    "fecha": "日期",
+    "hora": "时间",
+    "usuario": "用户",
+    "rol": "角色",
+    "modulo": "模块",
+    "accion": "操作",
+    "descripcion": "描述",
+    "resultado": "结果"
+  }
+}

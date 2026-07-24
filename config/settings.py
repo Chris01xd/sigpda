@@ -68,6 +68,14 @@ DURACION_SESION_MINUTOS = int(os.getenv("DURACION_SESION_MINUTOS", "480"))
 
 
 # ----------------------------------------------------------------
+# CHATBOT (Google Gemini — nivel gratuito, sin tarjeta de crédito)
+# ----------------------------------------------------------------
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+CHATBOT_MODEL = os.getenv("CHATBOT_MODEL", "gemini-flash-latest")
+CHATBOT_MAX_TOKENS = int(os.getenv("CHATBOT_MAX_TOKENS", "1024"))
+
+
+# ----------------------------------------------------------------
 # ROLES Y PERMISOS
 # ----------------------------------------------------------------
 ROLES_DISPONIBLES = ["Administrador", "Gerente", "Trabajador", "Analista"]

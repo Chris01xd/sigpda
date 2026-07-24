@@ -1,0 +1,29 @@
+{
+  "titulo": "报表",
+  "subtitulo": "为管理层和分析生成PDF执行报告",
+  "descargado_ok": "报表下载成功。",
+  "error_generar": "生成报表时出错。请确认已有登记数据。",
+  "semanal": {
+    "titulo": "每周执行报告",
+    "descripcion": "包含期间关键指标、碳足迹与水足迹、按成本排名的浪费情况、与上期对比的经济节约以及当前有效的智能提醒的PDF报告。",
+    "items": {
+      "resumen": "本周摘要（记录与成本）",
+      "huella": "环境足迹 — 二氧化碳、用水量、等效换算",
+      "top_desperdicio": "浪费最多的菜品排行",
+      "ahorro": "与上期相比的经济节约",
+      "alertas": "待处理的智能提醒",
+      "recomendaciones": "运营建议"
+    },
+    "generando": "正在生成PDF...",
+    "descargar": "下载PDF报告"
+  },
+  "info": {
+    "titulo": "这份报告有什么用？",
+    "dueno_label": "对于餐厅老板：",
+    "dueno_texto": "无需登录系统即可查看包含最重要指标的每周执行摘要。",
+    "auditorias_label": "对于审计：",
+    "auditorias_texto": "提供可验证指标的食物浪费控制书面证据。",
+    "tesis_label": "对于论文：",
+    "tesis_texto": "报告包含依据FAO 2023年系数计算的碳足迹，符合可持续发展目标12（负责任消费和生产）。"
+  }
+}

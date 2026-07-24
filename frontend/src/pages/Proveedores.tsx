@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Plus, Pencil, Trash2 } from 'lucide-react'
 import api from '../api/client'
 import DataTable from '../components/DataTable'
@@ -8,6 +9,7 @@ import { Proveedor } from '../types'
 const empty = { nombre: '', tipo_documento: 'RUC', numero_documento: '', contacto: '', telefono: '', correo: '', direccion: '', estado: true }
 
 export default function Proveedores() {
+  const { t } = useTranslation('proveedores')
   const [proveedores, setProveedores] = useState<Proveedor[]>([])
   const [showForm, setShowForm] = useState(false)
   const [editing, setEditing] = useState<Proveedor | null>(null)
@@ -27,17 +29,17 @@ export default function Proveedores() {
   }
 
   const handleDelete = async (id: number) => {
-    if (!confirm('¿Eliminar proveedor?')) return
+    if (!confirm(t('confirmar_eliminar'))) return
     await api.delete(`/proveedores/${id}`); load()
   }
 
   const columns = [
-    { key: 'nombre', header: 'Nombre' },
-    { key: 'tipo_documento', header: 'Tipo Doc.' },
-    { key: 'numero_documento', header: 'Documento' },
-    { key: 'contacto', header: 'Contacto' },
-    { key: 'telefono', header: 'Teléfono' },
-    { key: 'correo', header: 'Correo' },
+    { key: 'nombre', header: t('tabla.nombre') },
+    { key: 'tipo_documento', header: t('tabla.tipo_documento') },
+    { key: 'numero_documento', header: t('tabla.numero_documento') },
+    { key: 'contacto', header: t('tabla.contacto') },
+    { key: 'telefono', header: t('tabla.telefono') },
+    { key: 'correo', header: t('tabla.correo') },
     {
       key: 'acciones', header: '',
       render: (r: Proveedor) => (
@@ -53,55 +55,55 @@ export default function Proveedores() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Proveedores</h1>
-          <p className="text-sm text-gray-500">Gestión de proveedores</p>
+          <h1 className="text-2xl font-bold text-gray-800">{t('titulo')}</h1>
+          <p className="text-sm text-gray-500">{t('subtitulo')}</p>
         </div>
         <button onClick={openNew} className="btn-primary flex items-center gap-2">
-          <Plus className="w-4 h-4" /> Nuevo Proveedor
+          <Plus className="w-4 h-4" /> {t('nuevo_proveedor')}
         </button>
       </div>
       <div className="card">
         <DataTable columns={columns as Parameters<typeof DataTable>[0]['columns']} data={proveedores as unknown as Record<string, unknown>[]} />
       </div>
       {showForm && (
-        <Modal title={editing ? 'Editar Proveedor' : 'Nuevo Proveedor'} onClose={() => setShowForm(false)}>
+        <Modal title={editing ? t('modal.editar_titulo') : t('modal.nuevo_titulo')} onClose={() => setShowForm(false)}>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Nombre *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('modal.nombre')}</label>
                 <input required value={form.nombre} onChange={(e) => setForm({ ...form, nombre: e.target.value })} className="input-field" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Tipo documento</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('modal.tipo_documento')}</label>
                 <select value={form.tipo_documento} onChange={(e) => setForm({ ...form, tipo_documento: e.target.value })} className="input-field">
                   <option value="RUC">RUC</option>
                   <option value="DNI">DNI</option>
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">N° Documento *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('modal.numero_documento')}</label>
                 <input required value={form.numero_documento} onChange={(e) => setForm({ ...form, numero_documento: e.target.value })} className="input-field" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Contacto</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('modal.contacto')}</label>
                 <input value={form.contacto} onChange={(e) => setForm({ ...form, contacto: e.target.value })} className="input-field" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('modal.telefono')}</label>
                 <input value={form.telefono} onChange={(e) => setForm({ ...form, telefono: e.target.value })} className="input-field" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Correo</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('modal.correo')}</label>
                 <input type="email" value={form.correo} onChange={(e) => setForm({ ...form, correo: e.target.value })} className="input-field" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('modal.direccion')}</label>
                 <input value={form.direccion} onChange={(e) => setForm({ ...form, direccion: e.target.value })} className="input-field" />
               </div>
             </div>
             <div className="flex justify-end gap-3 pt-2">
-              <button type="button" onClick={() => setShowForm(false)} className="btn-secondary">Cancelar</button>
-              <button type="submit" className="btn-primary">Guardar</button>
+              <button type="button" onClick={() => setShowForm(false)} className="btn-secondary">{t('modal.cancelar')}</button>
+              <button type="submit" className="btn-primary">{t('modal.guardar')}</button>
             </div>
           </form>
         </Modal>

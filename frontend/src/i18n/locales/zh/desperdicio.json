@@ -1,0 +1,30 @@
+{
+  "titulo": "损耗",
+  "subtitulo": "损耗与浪费记录",
+  "boton_registrar": "登记损耗",
+  "tabla": {
+    "fecha": "日期",
+    "tipo": "类型",
+    "item": "项目",
+    "motivo": "原因",
+    "cantidad": "数量",
+    "costo": "成本"
+  },
+  "modal": {
+    "titulo": "登记损耗"
+  },
+  "formulario": {
+    "tipo": "类型",
+    "opcion_plato": "菜品",
+    "opcion_insumo": "物资",
+    "plato": "菜品",
+    "insumo": "物资",
+    "seleccionar": "请选择...",
+    "fecha": "日期",
+    "motivo": "原因",
+    "cantidad": "数量",
+    "unidad_medida": "计量单位",
+    "costo_estimado": "预估成本 (S/)",
+    "observaciones": "备注"
+  }
+}

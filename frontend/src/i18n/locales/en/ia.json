@@ -1,0 +1,158 @@
+{
+  "titulo": "AI / Predictions",
+  "subtitulo": "Demand prediction with Machine Learning — Automatic model comparison",
+  "tiempo_computo": "Compute time: {{ms}} ms",
+  "errores": {
+    "seleccionar_plato": "Select a dish",
+    "prediccion": "Error in prediction",
+    "comparacion": "Error in model comparison",
+    "eda": "Error generating the exploratory data analysis",
+    "entrenamiento_completo": "Error in the full training run"
+  },
+  "parametros": {
+    "titulo": "Parameters",
+    "plato_label": "Dish *",
+    "seleccionar": "Select...",
+    "modelo_label": "Model (individual prediction)",
+    "avanzado": "Advanced",
+    "dias_label": "Days to predict",
+    "clima_label": "Weather",
+    "evento_label": "Event",
+    "boton_ejecutar": "Run Prediction",
+    "boton_calculando": "Calculating...",
+    "modelos": {
+      "random_forest": {
+        "label": "Random Forest",
+        "desc": "Decision tree ensemble"
+      },
+      "regresion_lineal": {
+        "label": "Linear Regression",
+        "desc": "Classic linear model"
+      },
+      "decision_tree": {
+        "label": "Decision Tree",
+        "desc": "Simple decision tree"
+      },
+      "transformer_hibrido": {
+        "label": "Hybrid Transformer",
+        "desc": "Multi-Head Attention + Ensemble (RF + GBR + LR + DT) + Ridge Meta-Learner"
+      }
+    },
+    "climas": {
+      "soleado": "☀️ Sunny",
+      "nublado": "⛅ Cloudy",
+      "lluvia": "🌧️ Rainy"
+    },
+    "eventos": {
+      "normal": "Normal",
+      "evento_local": "Local event",
+      "feriado": "Holiday"
+    },
+    "transformer": {
+      "titulo": "Transformer Hyperparameters",
+      "cabezas_label": "Attention heads",
+      "dk_label": "d_k (key dim.)",
+      "resumen": "{{nHeads}} heads × d_k={{dK}} → {{total}} attention dimensions"
+    }
+  },
+  "eda_seccion": {
+    "titulo": "Exploratory data analysis",
+    "descripcion": "Descriptive statistics, data quality, distribution, seasonality and correlations of the dish's historical data.",
+    "boton": "Analyze data (EDA)",
+    "boton_cargando": "Analyzing data...",
+    "cargando_resultado": "Generating exploratory data analysis...",
+    "encabezado": "Exploratory Data Analysis — {{plato}}"
+  },
+  "comparacion_seccion": {
+    "titulo": "Automatic comparison (thesis)",
+    "descripcion": "Compares ARIMA, Prophet and Transformer with automatically selected hyperparameters. Just choose dish, days, weather and event.",
+    "boton": "Compare models automatically",
+    "boton_cargando": "Comparing models..."
+  },
+  "entrenamiento_seccion": {
+    "titulo": "Full experimentation (5 models)",
+    "descripcion": "ARIMA, Prophet, Holt-Winters, Transformer+RF and Transformer+GBR with cross-validation, hyperparameter optimization and statistical tests (Friedman, Wilcoxon, Diebold-Mariano). May take several tens of seconds.",
+    "boton": "Run full experimentation",
+    "boton_cargando": "Training (may take a while)...",
+    "cargando_resultado": "Running full experimentation...",
+    "cargando_detalle": "5 models, cross-validation, tuning and statistical tests — may take several tens of seconds."
+  },
+  "metricas_individuales": {
+    "titulo": "Model metrics",
+    "mae_desc": "Mean Absolute Error",
+    "r2_desc": "Goodness of fit"
+  },
+  "estado_vacio": {
+    "titulo": "Select a dish and run a prediction",
+    "descripcion": "The system requires at least 10 historical records for individual prediction and 30 for model comparison."
+  },
+  "prediccion": {
+    "grafico_titulo": "Estimated demand vs. recommended production",
+    "serie_demanda": "Estimated demand",
+    "serie_produccion": "Recommended production",
+    "tabla_titulo": "Daily detail",
+    "columnas": {
+      "fecha": "Date",
+      "demanda": "Demand",
+      "produccion_rec": "Rec. production",
+      "confianza": "Confidence",
+      "riesgo": "Risk"
+    },
+    "transformer": {
+      "titulo": "Hybrid Transformer — Architecture",
+      "cabezas": "Heads:",
+      "dk": "d_k:",
+      "dim_total": "Total dim.:",
+      "pesos_titulo": "Meta-Learner Weights (Ridge)",
+      "peso": "Weight",
+      "importancia_titulo": "Feature importance (internal RF)",
+      "importancia": "Importance"
+    }
+  },
+  "comparacion": {
+    "titulo": "Automatic Model Comparison",
+    "subtitulo": "{{entrenamiento}} training days / {{prueba}} test days (chronological split)",
+    "modelo_ganador_label": "Winning model",
+    "mae_ganador": "MAE = {{valor}}",
+    "metricas_titulo": "Error metrics by model",
+    "metricas_nota": "(lower values → higher accuracy)",
+    "columnas": {
+      "modelo": "Model",
+      "mae": "MAE",
+      "rmse": "RMSE",
+      "mape": "MAPE (%)",
+      "r2": "R²",
+      "estado": "Status"
+    },
+    "badge_error": "Error",
+    "badge_ganador": "Winner",
+    "badge_evaluado": "Evaluated",
+    "nombres_modelos": {
+      "arima": "ARIMA",
+      "prophet": "Prophet",
+      "transformer_hibrido": "Hybrid Transformer"
+    },
+    "interpretacion_titulo": "Result interpretation",
+    "interpretacion_nota": "The selected model shows the lowest average error, and is therefore considered the most suitable for predicting food waste."
+  },
+  "pruebas_estadisticas": {
+    "dm_titulo": "Diebold-Mariano Test — Statistical validation",
+    "dm_hipotesis": "H₀: equal predictive accuracy",
+    "vs": "vs",
+    "estadistico_label": "DM statistic",
+    "p_valor_label": "p-value",
+    "significativo_label": "Significant",
+    "significativo_si": "Yes (p < 0.05)",
+    "significativo_no": "No"
+  },
+  "predicciones_futuras": {
+    "titulo": "Future predictions — {{modelo}}",
+    "subtitulo": "Generated with the winning model using automatic hyperparameters",
+    "columnas": {
+      "fecha": "Date",
+      "demanda_est": "Est. demand",
+      "produccion_rec": "Rec. production",
+      "riesgo": "Waste risk"
+    }
+  }
+}

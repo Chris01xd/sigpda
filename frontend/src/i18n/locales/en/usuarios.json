@@ -1,0 +1,28 @@
+{
+  "titulo": "Users",
+  "subtitulo": "Manage system access",
+  "nuevo_usuario": "New User",
+  "confirmar_eliminar": "Delete user?",
+  "tabla": {
+    "nombre": "Name",
+    "usuario": "Username",
+    "correo": "Email",
+    "rol": "Role",
+    "estado": "Status"
+  },
+  "modal": {
+    "editar_titulo": "Edit User",
+    "nuevo_titulo": "New User"
+  },
+  "formulario": {
+    "nombre": "First name *",
+    "apellido": "Last name *",
+    "usuario": "Username *",
+    "correo": "Email *",
+    "contrasena": "Password *",
+    "nueva_contrasena": "New password",
+    "contrasena_placeholder_editar": "Leave blank to keep unchanged",
+    "rol": "Role *",
+    "usuario_activo": "Active user"
+  }
+}

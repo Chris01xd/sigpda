@@ -1,0 +1,52 @@
+{
+  "titulo": "销售",
+  "subtitulo": "交易记录",
+  "nueva_venta": "新增销售",
+  "alerta_agregar_plato": "请至少添加一道菜品",
+  "tabla": {
+    "numero": "编号",
+    "fecha": "日期",
+    "hora": "时间",
+    "tipo": "类型",
+    "cliente": "客户",
+    "pago": "支付方式",
+    "total": "总计"
+  },
+  "metodos": {
+    "efectivo": "现金",
+    "tarjeta": "银行卡",
+    "yape": "Yape",
+    "plin": "Plin",
+    "transferencia": "转账"
+  },
+  "comprobantes": {
+    "ticket": "小票",
+    "boleta": "销售单",
+    "factura": "发票"
+  },
+  "modal_nueva_venta": {
+    "titulo": "新增销售",
+    "metodo_pago": "支付方式",
+    "comprobante": "凭证类型",
+    "cliente_opcional": "客户（可选）",
+    "cliente_placeholder": "客户姓名",
+    "documento_opcional": "证件号（可选）",
+    "documento_placeholder": "身份证/税号",
+    "seleccionar_platos": "选择菜品",
+    "pedido": "订单",
+    "total_label": "总计：",
+    "registrar_venta": "登记销售"
+  },
+  "modal_detalle": {
+    "titulo": "销售单号 {{numero}}",
+    "fecha": "日期：",
+    "hora": "时间：",
+    "comprobante": "凭证：",
+    "pago": "支付方式：",
+    "cliente": "客户：",
+    "plato": "菜品",
+    "cantidad": "数量",
+    "subtotal": "小计",
+    "total": "总计"
+  }
+}

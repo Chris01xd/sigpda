@@ -1,0 +1,30 @@
+{
+  "titulo": "Suggested Orders List",
+  "subtitulo": "Calculated based on average sales and current inventory",
+  "proyeccion": "Forecast:",
+  "dias_sufijo": "days",
+  "calculando": "Calculating orders...",
+  "kpi": {
+    "insumos_a_pedir": "Items to order",
+    "proximos_dias": "next {{dias}} days",
+    "costo_estimado": "Estimated cost",
+    "total_pedido": "order total",
+    "proveedores": "Suppliers",
+    "distintos_a_contactar": "distinct suppliers to contact"
+  },
+  "vacio": {
+    "titulo": "Sufficient stock for {{dias}} days",
+    "descripcion": "No additional orders are required with the current projection."
+  },
+  "grupo": {
+    "items_costo": "{{cantidad}} item(s) · S/ {{costo}}"
+  },
+  "tabla": {
+    "insumo": "Item",
+    "stock_actual": "Current stock",
+    "necesario": "Needed",
+    "a_pedir": "To order",
+    "unidad": "Unit",
+    "costo_est": "Est. cost"
+  }
+}

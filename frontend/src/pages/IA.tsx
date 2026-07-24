@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   Brain, Play, Loader2, Info, Zap, Trophy,
   BarChart2, AlertCircle, CheckCircle2, GitCompare, Microscope, FlaskConical,
@@ -82,38 +83,46 @@ const riesgoColor: Record<string, string> = {
   alto:  'bg-red-100 text-red-700',
 }
 
-const MODELOS = [
-  { value: 'random_forest',      label: 'Random Forest',      desc: 'Ensemble de árboles de decisión' },
-  { value: 'regresion_lineal',   label: 'Regresión Lineal',   desc: 'Modelo lineal clásico' },
-  { value: 'decision_tree',      label: 'Árbol de Decisión',  desc: 'Árbol de decisión simple' },
-  {
-    value: 'transformer_hibrido', label: 'Transformer Híbrido',
-    desc: 'Multi-Head Attention + Ensemble (RF + GBR + LR + DT) + Ridge Meta-Learner',
-    advanced: true,
-  },
+// Claves de los modelos disponibles para predicción individual (los textos
+// visibles se resuelven vía i18n dentro del componente)
+const MODELOS_KEYS = [
+  { value: 'random_forest' },
+  { value: 'regresion_lineal' },
+  { value: 'decision_tree' },
+  { value: 'transformer_hibrido', advanced: true },
 ]
 
-const CLIMAS  = [
-  { value: 1, label: '☀️ Soleado' },
-  { value: 2, label: '⛅ Nublado' },
-  { value: 3, label: '🌧️ Lluvia'  },
+const CLIMAS_KEYS  = [
+  { value: 1, key: 'soleado' },
+  { value: 2, key: 'nublado' },
+  { value: 3, key: 'lluvia'  },
 ]
 
-const EVENTOS = [
-  { value: 0, label: 'Normal'      },
-  { value: 1, label: 'Evento local' },
-  { value: 2, label: 'Feriado'     },
+const EVENTOS_KEYS = [
+  { value: 0, key: 'normal'      },
+  { value: 1, key: 'evento_local' },
+  { value: 2, key: 'feriado'     },
 ]
-
-const NOMBRES_MODELOS: Record<string, string> = {
-  arima:              'ARIMA',
-  prophet:            'Prophet',
-  transformer_hibrido: 'Transformer Híbrido',
-}
 
 // ——— Componente principal ———
 
 export default function IA() {
+  const { t } = useTranslation('ia')
+
+  // Modelos, climas y eventos con sus textos traducidos
+  const MODELOS = MODELOS_KEYS.map((m) => ({
+    ...m,
+    label: t(`parametros.modelos.${m.value}.label`),
+    desc:  t(`parametros.modelos.${m.value}.desc`),
+  }))
+  const CLIMAS  = CLIMAS_KEYS.map((c) => ({ ...c, label: t(`parametros.climas.${c.key}`) }))
+  const EVENTOS = EVENTOS_KEYS.map((ev) => ({ ...ev, label: t(`parametros.eventos.${ev.key}`) }))
+  const NOMBRES_MODELOS: Record<string, string> = {
+    arima:               t('comparacion.nombres_modelos.arima'),
+    prophet:             t('comparacion.nombres_modelos.prophet'),
+    transformer_hibrido: t('comparacion.nombres_modelos.transformer_hibrido'),
+  }
+
   // Estado — predicción individual
   const [platos, setPlatos]               = useState<PlatoIA[]>([])
   const [idPlato, setIdPlato]             = useState(0)
@@ -152,7 +161,7 @@ export default function IA() {
 
   // ——— Predicción individual ———
   const ejecutar = async () => {
-    if (!idPlato) return setError('Selecciona un plato')
+    if (!idPlato) return setError(t('errores.seleccionar_plato'))
     setLoading(true)
     setError('')
     setResultados([])
@@ -178,7 +187,7 @@ export default function IA() {
       setTransformerInfo(r.data.transformer_info ?? null)
       setTiempoMs(Date.now() - t0)
     } catch (e: unknown) {
-      setError((e as { response?: { data?: { detail?: string } } })?.response?.data?.detail || 'Error en predicción')
+      setError((e as { response?: { data?: { detail?: string } } })?.response?.data?.detail || t('errores.prediccion'))
     } finally {
       setLoading(false)
     }
@@ -186,7 +195,7 @@ export default function IA() {
 
   // ——— Comparación automática de modelos ———
   const ejecutarComparacion = async () => {
-    if (!idPlato) return setErrorComp('Selecciona un plato')
+    if (!idPlato) return setErrorComp(t('errores.seleccionar_plato'))
     setLoadingComp(true)
     setErrorComp('')
     setComparacion(null)
@@ -204,7 +213,7 @@ export default function IA() {
     } catch (e: unknown) {
       setErrorComp(
         (e as { response?: { data?: { detail?: string } } })?.response?.data?.detail ||
-        'Error en la comparación de modelos'
+        t('errores.comparacion')
       )
     } finally {
       setLoadingComp(false)
@@ -213,7 +222,7 @@ export default function IA() {
 
   // ——— Análisis exploratorio de datos (EDA) ———
   const ejecutarEda = async () => {
-    if (!idPlato) return setErrorEda('Selecciona un plato')
+    if (!idPlato) return setErrorEda(t('errores.seleccionar_plato'))
     setLoadingEda(true)
     setErrorEda('')
     setEda(null)
@@ -224,7 +233,7 @@ export default function IA() {
     } catch (e: unknown) {
       setErrorEda(
         (e as { response?: { data?: { detail?: string } } })?.response?.data?.detail ||
-        'Error al generar el análisis exploratorio de datos'
+        t('errores.eda')
       )
     } finally {
       setLoadingEda(false)
@@ -233,7 +242,7 @@ export default function IA() {
 
   // ——— Entrenamiento completo (5 modelos + CV + tuning + pruebas estadísticas) ———
   const ejecutarEntrenamientoCompleto = async () => {
-    if (!idPlato) return setErrorCompleto('Selecciona un plato')
+    if (!idPlato) return setErrorCompleto(t('errores.seleccionar_plato'))
     setLoadingCompleto(true)
     setErrorCompleto('')
     setEntrenamientoCompleto(null)
@@ -252,7 +261,7 @@ export default function IA() {
     } catch (e: unknown) {
       setErrorCompleto(
         (e as { response?: { data?: { detail?: string } } })?.response?.data?.detail ||
-        'Error en el entrenamiento completo'
+        t('errores.entrenamiento_completo')
       )
     } finally {
       setLoadingCompleto(false)
@@ -289,10 +298,10 @@ export default function IA() {
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-          <Brain className="w-7 h-7 text-primary-600" /> IA / Predicciones
+          <Brain className="w-7 h-7 text-primary-600" /> {t('titulo')}
         </h1>
         <p className="text-sm text-gray-500">
-          Predicción de demanda con Machine Learning — Comparación automática de modelos
+          {t('subtitulo')}
         </p>
       </div>
 
@@ -303,18 +312,18 @@ export default function IA() {
         ═══════════════════════════════════════════════════ */}
         <div className="space-y-4">
           <div className="card">
-            <h2 className="text-base font-semibold text-gray-700 mb-4">Parámetros</h2>
+            <h2 className="text-base font-semibold text-gray-700 mb-4">{t('parametros.titulo')}</h2>
             <div className="space-y-3">
 
               {/* Selector de plato */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Plato *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('parametros.plato_label')}</label>
                 <select
                   value={idPlato}
                   onChange={(e) => setIdPlato(+e.target.value)}
                   className="input-field"
                 >
-                  <option value={0}>Seleccionar...</option>
+                  <option value={0}>{t('parametros.seleccionar')}</option>
                   {platos.map((p) => (
                     <option key={p.id_plato} value={p.id_plato}>{p.nombre}</option>
                   ))}
@@ -324,7 +333,7 @@ export default function IA() {
               {/* Selector de modelo (solo para predicción individual) */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Modelo (predicción individual)
+                  {t('parametros.modelo_label')}
                 </label>
                 <div className="space-y-2">
                   {MODELOS.map((m) => (
@@ -348,7 +357,7 @@ export default function IA() {
                           <span className="text-sm font-medium text-gray-800">{m.label}</span>
                           {m.advanced && (
                             <span className="text-xs bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded-full font-medium flex items-center gap-0.5">
-                              <Zap className="w-3 h-3" /> Avanzado
+                              <Zap className="w-3 h-3" /> {t('parametros.avanzado')}
                             </span>
                           )}
                         </div>
@@ -362,7 +371,7 @@ export default function IA() {
               {/* Días / Clima / Evento */}
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Días a predecir</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('parametros.dias_label')}</label>
                   <input
                     type="number" min={1} max={30} value={dias}
                     onChange={(e) => setDias(+e.target.value)}
@@ -370,13 +379,13 @@ export default function IA() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Clima</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('parametros.clima_label')}</label>
                   <select value={clima} onChange={(e) => setClima(+e.target.value)} className="input-field">
                     {CLIMAS.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
                   </select>
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Evento</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('parametros.evento_label')}</label>
                   <select value={evento} onChange={(e) => setEvento(+e.target.value)} className="input-field">
                     {EVENTOS.map((ev) => <option key={ev.value} value={ev.value}>{ev.label}</option>)}
                   </select>
@@ -387,24 +396,24 @@ export default function IA() {
               {isTransformer && (
                 <div className="bg-purple-50 border border-purple-200 rounded-xl p-3">
                   <p className="text-xs font-semibold text-purple-700 mb-2 flex items-center gap-1">
-                    <Zap className="w-3.5 h-3.5" /> Hiperparámetros Transformer
+                    <Zap className="w-3.5 h-3.5" /> {t('parametros.transformer.titulo')}
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">Cabezas atención</label>
+                      <label className="block text-xs text-gray-600 mb-1">{t('parametros.transformer.cabezas_label')}</label>
                       <select value={nHeads} onChange={(e) => setNHeads(+e.target.value)} className="input-field text-sm">
                         {[1, 2, 4, 8].map((n) => <option key={n} value={n}>{n}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">d_k (dim. clave)</label>
+                      <label className="block text-xs text-gray-600 mb-1">{t('parametros.transformer.dk_label')}</label>
                       <select value={dK} onChange={(e) => setDK(+e.target.value)} className="input-field text-sm">
                         {[4, 8, 16, 32, 64].map((d) => <option key={d} value={d}>{d}</option>)}
                       </select>
                     </div>
                   </div>
                   <p className="text-xs text-purple-600 mt-2">
-                    {nHeads} cabezas × d_k={dK} → {nHeads * dK} dimensiones de atención
+                    {t('parametros.transformer.resumen', { nHeads, dK, total: nHeads * dK })}
                   </p>
                 </div>
               )}
@@ -422,18 +431,17 @@ export default function IA() {
                 className="btn-primary w-full flex items-center justify-center gap-2"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
-                {loading ? 'Calculando...' : 'Ejecutar Predicción'}
+                {loading ? t('parametros.boton_calculando') : t('parametros.boton_ejecutar')}
               </button>
 
               {/* Separador — EDA */}
               <div className="border-t border-dashed border-gray-200 pt-3">
                 <p className="text-xs text-gray-500 mb-2 font-medium flex items-center gap-1">
                   <Microscope className="w-3.5 h-3.5" />
-                  Análisis exploratorio de datos
+                  {t('eda_seccion.titulo')}
                 </p>
                 <p className="text-xs text-gray-400 mb-2">
-                  Estadísticas descriptivas, calidad de datos, distribución,
-                  estacionalidad y correlaciones del histórico del plato.
+                  {t('eda_seccion.descripcion')}
                 </p>
 
                 {errorEda && (
@@ -450,8 +458,8 @@ export default function IA() {
                              text-white text-sm font-medium transition-colors"
                 >
                   {loadingEda
-                    ? <><Loader2 className="w-4 h-4 animate-spin" /> Analizando datos...</>
-                    : <><Microscope className="w-4 h-4" /> Analizar datos (EDA)</>
+                    ? <><Loader2 className="w-4 h-4 animate-spin" /> {t('eda_seccion.boton_cargando')}</>
+                    : <><Microscope className="w-4 h-4" /> {t('eda_seccion.boton')}</>
                   }
                 </button>
               </div>
@@ -460,11 +468,10 @@ export default function IA() {
               <div className="border-t border-dashed border-gray-200 pt-3">
                 <p className="text-xs text-gray-500 mb-2 font-medium flex items-center gap-1">
                   <GitCompare className="w-3.5 h-3.5" />
-                  Comparación automática (tesis)
+                  {t('comparacion_seccion.titulo')}
                 </p>
                 <p className="text-xs text-gray-400 mb-2">
-                  Compara ARIMA, Prophet y Transformer con hiperparámetros
-                  seleccionados automáticamente. Solo elige plato, días, clima y evento.
+                  {t('comparacion_seccion.descripcion')}
                 </p>
 
                 {errorComp && (
@@ -482,8 +489,8 @@ export default function IA() {
                              text-white text-sm font-medium transition-colors"
                 >
                   {loadingComp
-                    ? <><Loader2 className="w-4 h-4 animate-spin" /> Comparando modelos...</>
-                    : <><GitCompare className="w-4 h-4" /> Comparar modelos automáticamente</>
+                    ? <><Loader2 className="w-4 h-4 animate-spin" /> {t('comparacion_seccion.boton_cargando')}</>
+                    : <><GitCompare className="w-4 h-4" /> {t('comparacion_seccion.boton')}</>
                   }
                 </button>
               </div>
@@ -492,13 +499,10 @@ export default function IA() {
               <div className="border-t border-dashed border-gray-200 pt-3">
                 <p className="text-xs text-gray-500 mb-2 font-medium flex items-center gap-1">
                   <FlaskConical className="w-3.5 h-3.5" />
-                  Experimentación completa (5 modelos)
+                  {t('entrenamiento_seccion.titulo')}
                 </p>
                 <p className="text-xs text-gray-400 mb-2">
-                  ARIMA, Prophet, Holt-Winters, Transformer+RF y Transformer+GBR con
-                  validación cruzada, optimización de hiperparámetros y pruebas
-                  estadísticas (Friedman, Wilcoxon, Diebold-Mariano). Puede tardar
-                  varias decenas de segundos.
+                  {t('entrenamiento_seccion.descripcion')}
                 </p>
 
                 {errorCompleto && (
@@ -515,8 +519,8 @@ export default function IA() {
                              text-white text-sm font-medium transition-colors"
                 >
                   {loadingCompleto
-                    ? <><Loader2 className="w-4 h-4 animate-spin" /> Entrenando (puede tardar)...</>
-                    : <><FlaskConical className="w-4 h-4" /> Ejecutar experimentación completa</>
+                    ? <><Loader2 className="w-4 h-4 animate-spin" /> {t('entrenamiento_seccion.boton_cargando')}</>
+                    : <><FlaskConical className="w-4 h-4" /> {t('entrenamiento_seccion.boton')}</>
                   }
                 </button>
               </div>
@@ -530,21 +534,21 @@ export default function IA() {
           {/* Métricas de la predicción individual */}
           {metricas.mae !== undefined && (
             <div className="card">
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">Métricas del modelo</h3>
+              <h3 className="text-sm font-semibold text-gray-700 mb-3">{t('metricas_individuales.titulo')}</h3>
               <div className="grid grid-cols-2 gap-2 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3 text-center">
                   <p className="text-xs text-gray-500">MAE</p>
                   <p className="text-xl font-bold text-gray-800">{metricas.mae?.toFixed(3)}</p>
-                  <p className="text-xs text-gray-400">Error Absoluto Medio</p>
+                  <p className="text-xs text-gray-400">{t('metricas_individuales.mae_desc')}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3 text-center">
                   <p className="text-xs text-gray-500">R²</p>
                   <p className="text-xl font-bold text-gray-800">{metricas.r2?.toFixed(3)}</p>
-                  <p className="text-xs text-gray-400">Bondad de ajuste</p>
+                  <p className="text-xs text-gray-400">{t('metricas_individuales.r2_desc')}</p>
                 </div>
               </div>
               {tiempoMs && (
-                <p className="text-xs text-gray-400 text-center">Tiempo de cómputo: {tiempoMs} ms</p>
+                <p className="text-xs text-gray-400 text-center">{t('tiempo_computo', { ms: tiempoMs })}</p>
               )}
             </div>
           )}
@@ -560,10 +564,9 @@ export default function IA() {
            !loading && !loadingComp && !loadingEda && !loadingCompleto && (
             <div className="card flex flex-col items-center justify-center py-16 text-center">
               <Brain className="w-16 h-16 text-gray-200 mb-4" />
-              <p className="text-gray-500">Selecciona un plato y ejecuta una predicción</p>
+              <p className="text-gray-500">{t('estado_vacio.titulo')}</p>
               <p className="text-sm text-gray-400 mt-1">
-                El sistema requiere al menos 10 registros históricos para predicción
-                individual y 30 para comparación de modelos.
+                {t('estado_vacio.descripcion')}
               </p>
             </div>
           )}
@@ -572,7 +575,7 @@ export default function IA() {
           {loadingEda && (
             <div className="card flex flex-col items-center justify-center py-16 text-center">
               <Loader2 className="w-10 h-10 text-teal-500 animate-spin mb-3" />
-              <p className="text-gray-500">Generando análisis exploratorio de datos...</p>
+              <p className="text-gray-500">{t('eda_seccion.cargando_resultado')}</p>
             </div>
           )}
 
@@ -580,9 +583,9 @@ export default function IA() {
           {loadingCompleto && (
             <div className="card flex flex-col items-center justify-center py-16 text-center">
               <Loader2 className="w-10 h-10 text-purple-500 animate-spin mb-3" />
-              <p className="text-gray-500">Ejecutando experimentación completa...</p>
+              <p className="text-gray-500">{t('entrenamiento_seccion.cargando_resultado')}</p>
               <p className="text-xs text-gray-400 mt-1">
-                5 modelos, validación cruzada, tuning y pruebas estadísticas — puede tardar varias decenas de segundos.
+                {t('entrenamiento_seccion.cargando_detalle')}
               </p>
             </div>
           )}
@@ -602,7 +605,7 @@ export default function IA() {
               <div className="flex items-center gap-2 mb-3">
                 <Microscope className="w-5 h-5 text-teal-600" />
                 <h2 className="text-base font-bold text-gray-800">
-                  Análisis Exploratorio de Datos — {eda.resumen.plato}
+                  {t('eda_seccion.encabezado', { plato: eda.resumen.plato })}
                 </h2>
               </div>
               <EdaPanel data={eda} />
@@ -617,7 +620,7 @@ export default function IA() {
               {/* Gráfico demanda */}
               <div className="card">
                 <h2 className="text-base font-semibold text-gray-700 mb-4">
-                  Demanda estimada vs. producción recomendada
+                  {t('prediccion.grafico_titulo')}
                 </h2>
                 <ResponsiveContainer width="100%" height={220}>
                   <LineChart data={resultados}>
@@ -628,12 +631,12 @@ export default function IA() {
                     <Legend />
                     <Line
                       type="monotone" dataKey="demanda_estimada"
-                      stroke="#6366f1" strokeWidth={2.5} name="Demanda estimada" dot={{ r: 4 }}
+                      stroke="#6366f1" strokeWidth={2.5} name={t('prediccion.serie_demanda')} dot={{ r: 4 }}
                     />
                     <Line
                       type="monotone" dataKey="recomendacion"
                       stroke="#f59e0b" strokeWidth={2} strokeDasharray="6 3"
-                      name="Producción recomendada" dot={{ r: 3 }}
+                      name={t('prediccion.serie_produccion')} dot={{ r: 3 }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -641,16 +644,16 @@ export default function IA() {
 
               {/* Tabla de detalle */}
               <div className="card">
-                <h2 className="text-base font-semibold text-gray-700 mb-3">Detalle por día</h2>
+                <h2 className="text-base font-semibold text-gray-700 mb-3">{t('prediccion.tabla_titulo')}</h2>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b bg-gray-50">
-                        <th className="text-left px-3 py-2 text-xs font-semibold text-gray-500">Fecha</th>
-                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">Demanda</th>
-                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">Producción rec.</th>
-                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">Confianza</th>
-                        <th className="px-3 py-2 text-xs font-semibold text-gray-500">Riesgo</th>
+                        <th className="text-left px-3 py-2 text-xs font-semibold text-gray-500">{t('prediccion.columnas.fecha')}</th>
+                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">{t('prediccion.columnas.demanda')}</th>
+                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">{t('prediccion.columnas.produccion_rec')}</th>
+                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">{t('prediccion.columnas.confianza')}</th>
+                        <th className="px-3 py-2 text-xs font-semibold text-gray-500">{t('prediccion.columnas.riesgo')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -678,27 +681,27 @@ export default function IA() {
                   <div className="bg-purple-50 border border-purple-200 rounded-xl p-4">
                     <div className="flex items-center gap-2 mb-1">
                       <Zap className="w-4 h-4 text-purple-600" />
-                      <h2 className="text-sm font-bold text-purple-800">Transformer Híbrido — Arquitectura</h2>
+                      <h2 className="text-sm font-bold text-purple-800">{t('prediccion.transformer.titulo')}</h2>
                     </div>
                     <p className="text-xs text-purple-600 font-mono">{transformerInfo.arquitectura}</p>
                     <div className="flex gap-4 mt-2 text-xs text-purple-600">
-                      <span>Cabezas: <strong>{transformerInfo.n_heads}</strong></span>
-                      <span>d_k: <strong>{transformerInfo.d_k}</strong></span>
-                      <span>Dim. total: <strong>{transformerInfo.n_heads * transformerInfo.d_k}</strong></span>
+                      <span>{t('prediccion.transformer.cabezas')} <strong>{transformerInfo.n_heads}</strong></span>
+                      <span>{t('prediccion.transformer.dk')} <strong>{transformerInfo.d_k}</strong></span>
+                      <span>{t('prediccion.transformer.dim_total')} <strong>{transformerInfo.n_heads * transformerInfo.d_k}</strong></span>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="card">
                       <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-1">
-                        <Info className="w-4 h-4 text-gray-400" /> Pesos del Meta-Learner (Ridge)
+                        <Info className="w-4 h-4 text-gray-400" /> {t('prediccion.transformer.pesos_titulo')}
                       </h2>
                       <ResponsiveContainer width="100%" height={180}>
                         <BarChart data={ensembleData} layout="vertical">
                           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                           <XAxis type="number" tick={{ fontSize: 10 }} />
                           <YAxis dataKey="name" type="category" tick={{ fontSize: 10 }} width={110} />
-                          <Tooltip formatter={(v) => [Number(v).toFixed(4), 'Peso']} />
+                          <Tooltip formatter={(v) => [Number(v).toFixed(4), t('prediccion.transformer.peso')]} />
                           <Bar dataKey="peso" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
                         </BarChart>
                       </ResponsiveContainer>
@@ -707,15 +710,15 @@ export default function IA() {
                     {featureData.length > 0 && (
                       <div className="card">
                         <h2 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-1">
-                          <Info className="w-4 h-4 text-gray-400" /> Importancia de features (RF interno)
+                          <Info className="w-4 h-4 text-gray-400" /> {t('prediccion.transformer.importancia_titulo')}
                         </h2>
                         <ResponsiveContainer width="100%" height={180}>
                           <RadarChart data={featureData}>
                             <PolarGrid />
                             <PolarAngleAxis dataKey="feature" tick={{ fontSize: 9 }} />
                             <PolarRadiusAxis angle={30} tick={{ fontSize: 8 }} />
-                            <Radar name="Importancia" dataKey="importancia" stroke="#6366f1" fill="#6366f1" fillOpacity={0.25} />
-                            <Tooltip formatter={(v) => [`${v}%`, 'Importancia']} />
+                            <Radar name={t('prediccion.transformer.importancia')} dataKey="importancia" stroke="#6366f1" fill="#6366f1" fillOpacity={0.25} />
+                            <Tooltip formatter={(v) => [`${v}%`, t('prediccion.transformer.importancia')]} />
                           </RadarChart>
                         </ResponsiveContainer>
                       </div>
@@ -738,26 +741,28 @@ export default function IA() {
                   <div>
                     <h2 className="text-base font-bold text-indigo-800 flex items-center gap-2">
                       <GitCompare className="w-5 h-5" />
-                      Comparación Automática de Modelos
+                      {t('comparacion.titulo')}
                     </h2>
                     <p className="text-xs text-indigo-600 mt-0.5">
-                      {comparacion.n_datos_entrenamiento} días de entrenamiento /&nbsp;
-                      {comparacion.n_datos_prueba} días de prueba (split cronológico)
+                      {t('comparacion.subtitulo', {
+                        entrenamiento: comparacion.n_datos_entrenamiento,
+                        prueba: comparacion.n_datos_prueba,
+                      })}
                     </p>
                   </div>
                   <div className="flex items-center gap-2 bg-white border border-indigo-300 rounded-lg px-3 py-2 shadow-sm">
                     <Trophy className="w-5 h-5 text-yellow-500" />
                     <div>
-                      <p className="text-xs text-gray-500">Modelo ganador</p>
+                      <p className="text-xs text-gray-500">{t('comparacion.modelo_ganador_label')}</p>
                       <p className="text-sm font-bold text-indigo-700">
                         {comparacion.modelo_ganador_legible}
                       </p>
-                      <p className="text-xs text-gray-400">MAE = {comparacion.mae_ganador}</p>
+                      <p className="text-xs text-gray-400">{t('comparacion.mae_ganador', { valor: comparacion.mae_ganador })}</p>
                     </div>
                   </div>
                 </div>
                 {tiempoCompMs && (
-                  <p className="text-xs text-indigo-400 mt-2">Tiempo de cómputo: {tiempoCompMs} ms</p>
+                  <p className="text-xs text-indigo-400 mt-2">{t('tiempo_computo', { ms: tiempoCompMs })}</p>
                 )}
               </div>
 
@@ -765,21 +770,21 @@ export default function IA() {
               <div className="card">
                 <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-indigo-500" />
-                  Métricas de error por modelo
+                  {t('comparacion.metricas_titulo')}
                   <span className="text-xs font-normal text-gray-400 ml-1">
-                    (valores menores → mayor precisión)
+                    {t('comparacion.metricas_nota')}
                   </span>
                 </h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b bg-gray-50">
-                        <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600">Modelo</th>
-                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">MAE</th>
-                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">RMSE</th>
-                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">MAPE (%)</th>
-                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">R²</th>
-                        <th className="text-center px-3 py-2 text-xs font-semibold text-gray-600">Estado</th>
+                        <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600">{t('comparacion.columnas.modelo')}</th>
+                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">{t('comparacion.columnas.mae')}</th>
+                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">{t('comparacion.columnas.rmse')}</th>
+                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">{t('comparacion.columnas.mape')}</th>
+                        <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600">{t('comparacion.columnas.r2')}</th>
+                        <th className="text-center px-3 py-2 text-xs font-semibold text-gray-600">{t('comparacion.columnas.estado')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -814,15 +819,15 @@ export default function IA() {
                             <td className="px-3 py-2.5 text-center">
                               {m.error ? (
                                 <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">
-                                  Error
+                                  {t('comparacion.badge_error')}
                                 </span>
                               ) : esGanador ? (
                                 <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-medium flex items-center gap-0.5 justify-center">
-                                  <CheckCircle2 className="w-3 h-3" /> Ganador
+                                  <CheckCircle2 className="w-3 h-3" /> {t('comparacion.badge_ganador')}
                                 </span>
                               ) : (
                                 <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
-                                  Evaluado
+                                  {t('comparacion.badge_evaluado')}
                                 </span>
                               )}
                             </td>
@@ -838,9 +843,9 @@ export default function IA() {
               {Object.keys(comparacion.diebold_mariano).length > 0 && (
                 <div className="card">
                   <h3 className="text-sm font-semibold text-gray-700 mb-3">
-                    Prueba Diebold-Mariano — Validación estadística
+                    {t('pruebas_estadisticas.dm_titulo')}
                     <span className="text-xs font-normal text-gray-400 ml-2">
-                      H₀: igualdad de precisión predictiva
+                      {t('pruebas_estadisticas.dm_hipotesis')}
                     </span>
                   </h3>
                   <div className="space-y-3">
@@ -856,19 +861,19 @@ export default function IA() {
                         <div className="flex items-start justify-between gap-2 flex-wrap">
                           <div>
                             <p className="text-xs font-semibold text-gray-700">
-                              {dm.modelo_1} vs {dm.modelo_2}
+                              {dm.modelo_1} {t('pruebas_estadisticas.vs')} {dm.modelo_2}
                             </p>
                             <p className="text-xs text-gray-500 mt-1">{dm.interpretacion}</p>
                           </div>
                           <div className="flex gap-3 text-xs text-right">
                             <div>
-                              <p className="text-gray-400">Estadístico DM</p>
+                              <p className="text-gray-400">{t('pruebas_estadisticas.estadistico_label')}</p>
                               <p className="font-mono font-semibold text-gray-700">
                                 {dm.estadistico !== null ? dm.estadistico : '—'}
                               </p>
                             </div>
                             <div>
-                              <p className="text-gray-400">p-valor</p>
+                              <p className="text-gray-400">{t('pruebas_estadisticas.p_valor_label')}</p>
                               <p className={`font-mono font-semibold ${
                                 dm.significativo ? 'text-green-700' : 'text-gray-700'
                               }`}>
@@ -876,9 +881,9 @@ export default function IA() {
                               </p>
                             </div>
                             <div>
-                              <p className="text-gray-400">Significativo</p>
+                              <p className="text-gray-400">{t('pruebas_estadisticas.significativo_label')}</p>
                               <p className={`font-semibold ${dm.significativo ? 'text-green-600' : 'text-gray-500'}`}>
-                                {dm.significativo ? 'Sí (p < 0.05)' : 'No'}
+                                {dm.significativo ? t('pruebas_estadisticas.significativo_si') : t('pruebas_estadisticas.significativo_no')}
                               </p>
                             </div>
                           </div>
@@ -893,10 +898,10 @@ export default function IA() {
               {comparacion.predicciones_futuras.length > 0 && (
                 <div className="card">
                   <h2 className="text-base font-semibold text-gray-700 mb-1">
-                    Predicciones futuras — {comparacion.modelo_ganador_legible}
+                    {t('predicciones_futuras.titulo', { modelo: comparacion.modelo_ganador_legible })}
                   </h2>
                   <p className="text-xs text-gray-400 mb-4">
-                    Generadas con el modelo ganador usando hiperparámetros automáticos
+                    {t('predicciones_futuras.subtitulo')}
                   </p>
                   <ResponsiveContainer width="100%" height={220}>
                     <LineChart data={comparacion.predicciones_futuras}>
@@ -907,12 +912,12 @@ export default function IA() {
                       <Legend />
                       <Line
                         type="monotone" dataKey="demanda_estimada"
-                        stroke="#6366f1" strokeWidth={2.5} name="Demanda estimada" dot={{ r: 4 }}
+                        stroke="#6366f1" strokeWidth={2.5} name={t('prediccion.serie_demanda')} dot={{ r: 4 }}
                       />
                       <Line
                         type="monotone" dataKey="recomendacion"
                         stroke="#f59e0b" strokeWidth={2} strokeDasharray="6 3"
-                        name="Producción recomendada" dot={{ r: 3 }}
+                        name={t('prediccion.serie_produccion')} dot={{ r: 3 }}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -922,10 +927,10 @@ export default function IA() {
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="border-b bg-gray-50">
-                          <th className="text-left px-3 py-2 text-xs font-semibold text-gray-500">Fecha</th>
-                          <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">Demanda est.</th>
-                          <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">Prod. recomendada</th>
-                          <th className="px-3 py-2 text-xs font-semibold text-gray-500">Riesgo desperdicio</th>
+                          <th className="text-left px-3 py-2 text-xs font-semibold text-gray-500">{t('predicciones_futuras.columnas.fecha')}</th>
+                          <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">{t('predicciones_futuras.columnas.demanda_est')}</th>
+                          <th className="text-right px-3 py-2 text-xs font-semibold text-gray-500">{t('predicciones_futuras.columnas.produccion_rec')}</th>
+                          <th className="px-3 py-2 text-xs font-semibold text-gray-500">{t('predicciones_futuras.columnas.riesgo')}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-100">
@@ -955,14 +960,13 @@ export default function IA() {
                   <Info className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
                   <div>
                     <h4 className="text-sm font-semibold text-blue-800 mb-1">
-                      Interpretación del resultado
+                      {t('comparacion.interpretacion_titulo')}
                     </h4>
                     <p className="text-xs text-blue-700 leading-relaxed">
                       {comparacion.explicacion}
                     </p>
                     <p className="text-xs text-blue-600 mt-2 font-medium">
-                      El modelo seleccionado presenta el menor error promedio, por lo tanto,
-                      se considera el más adecuado para la predicción del desperdicio alimentario.
+                      {t('comparacion.interpretacion_nota')}
                     </p>
                   </div>
                 </div>

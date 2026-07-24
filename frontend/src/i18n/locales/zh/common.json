@@ -1,0 +1,72 @@
+{
+  "app": {
+    "nombre": "SIGPDA",
+    "version": "v2.0",
+    "tagline": "智能食物浪费管理与预测系统",
+    "footer": "毕业设计系统 — 2.0 版"
+  },
+  "nav": {
+    "dashboard": "仪表盘",
+    "ventas": "销售",
+    "produccion": "生产",
+    "desperdicio": "浪费",
+    "platos": "菜品",
+    "insumos": "食材",
+    "recetas": "配方",
+    "clientes": "客户",
+    "proveedores": "供应商",
+    "restaurantes": "餐厅",
+    "usuarios": "用户",
+    "recomendaciones": "建议",
+    "ia": "人工智能 / 预测",
+    "alertas_inteligentes": "智能警报",
+    "estadisticas": "统计",
+    "bitacora": "操作日志",
+    "pedidos": "订单",
+    "sostenibilidad": "可持续性",
+    "reportes": "PDF 报表",
+    "configuracion": "系统设置"
+  },
+  "sidebar": {
+    "cerrar_sesion": "退出登录",
+    "idioma": "语言"
+  },
+  "acciones": {
+    "guardar": "保存",
+    "cancelar": "取消",
+    "editar": "编辑",
+    "eliminar": "删除",
+    "nuevo": "新建",
+    "buscar": "搜索",
+    "ver": "查看",
+    "ver_todas": "查看全部",
+    "exportar": "导出",
+    "cerrar": "关闭",
+    "confirmar": "确认",
+    "descargar": "下载",
+    "actualizar": "刷新",
+    "reintentar": "重试"
+  },
+  "estado": {
+    "activo": "启用",
+    "inactivo": "停用",
+    "cargando": "加载中...",
+    "sin_datos": "暂无数据",
+    "error": "发生错误",
+    "pendiente": "待处理",
+    "completado": "已完成"
+  },
+  "tabla": {
+    "sin_datos": "暂无数据",
+    "de": "共"
+  },
+  "login": {
+    "usuario": "用户名",
+    "usuario_placeholder": "请输入用户名",
+    "contrasena": "密码",
+    "contrasena_placeholder": "请输入密码",
+    "iniciar_sesion": "登录",
+    "iniciando_sesion": "正在登录...",
+    "error_generico": "登录失败"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "app": {
+    "nombre": "SIGPDA",
+    "version": "v2.0",
+    "tagline": "Sistema Inteligente de Gestión y Predicción de Desperdicio Alimentario",
+    "footer": "Sistema de Tesis — Versión 2.0"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "ventas": "Ventas",
+    "produccion": "Producción",
+    "desperdicio": "Desperdicio",
+    "platos": "Platos",
+    "insumos": "Insumos",
+    "recetas": "Recetas",
+    "clientes": "Clientes",
+    "proveedores": "Proveedores",
+    "restaurantes": "Restaurantes",
+    "usuarios": "Usuarios",
+    "recomendaciones": "Recomendaciones",
+    "ia": "IA / Predicciones",
+    "alertas_inteligentes": "Alertas Inteligentes",
+    "estadisticas": "Estadísticas",
+    "bitacora": "Bitácora",
+    "pedidos": "Pedidos",
+    "sostenibilidad": "Sostenibilidad",
+    "reportes": "Reportes PDF",
+    "configuracion": "Configuración"
+  },
+  "sidebar": {
+    "cerrar_sesion": "Cerrar sesión",
+    "idioma": "Idioma"
+  },
+  "acciones": {
+    "guardar": "Guardar",
+    "cancelar": "Cancelar",
+    "editar": "Editar",
+    "eliminar": "Eliminar",
+    "nuevo": "Nuevo",
+    "buscar": "Buscar",
+    "ver": "Ver",
+    "ver_todas": "Ver todas",
+    "exportar": "Exportar",
+    "cerrar": "Cerrar",
+    "confirmar": "Confirmar",
+    "descargar": "Descargar",
+    "actualizar": "Actualizar",
+    "reintentar": "Reintentar"
+  },
+  "estado": {
+    "activo": "Activo",
+    "inactivo": "Inactivo",
+    "cargando": "Cargando...",
+    "sin_datos": "Sin datos",
+    "error": "Ocurrió un error",
+    "pendiente": "Pendiente",
+    "completado": "Completado"
+  },
+  "tabla": {
+    "sin_datos": "Sin datos",
+    "de": "de"
+  },
+  "login": {
+    "usuario": "Usuario",
+    "usuario_placeholder": "Ingresa tu usuario",
+    "contrasena": "Contraseña",
+    "contrasena_placeholder": "Ingresa tu contraseña",
+    "iniciar_sesion": "Iniciar sesión",
+    "iniciando_sesion": "Iniciando sesión...",
+    "error_generico": "Error al iniciar sesión"
+  }
+}

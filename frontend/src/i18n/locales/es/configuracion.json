@@ -1,0 +1,30 @@
+{
+  "titulo": "Configuración",
+  "subtitulo": "Parámetros del sistema",
+  "guardado_correctamente": "Configuración guardada correctamente",
+  "sin_configuraciones": "No hay configuraciones registradas",
+  "guardar": "Guardar",
+  "etiquetas": {
+    "notif_email_activa": "Alertas por correo electrónico activa",
+    "notif_email_destino": "Correo destino de alertas",
+    "notif_email_remitente": "Correo remitente (Gmail)",
+    "notif_email_password": "Contraseña de aplicación Gmail",
+    "notif_whatsapp_activa": "Alertas por WhatsApp activa",
+    "notif_telefono": "Número de teléfono destino (WhatsApp)",
+    "notif_twilio_sid": "Twilio – Account SID",
+    "notif_twilio_token": "Twilio – Auth Token",
+    "notif_twilio_numero": "Twilio – Número WhatsApp remitente"
+  },
+  "whatsapp": {
+    "probar": "Probar WhatsApp",
+    "enviando": "Enviando...",
+    "descripcion": "Envía un mensaje de prueba con la configuración Twilio guardada",
+    "error_generico": "Error al conectar con el servidor"
+  },
+  "email": {
+    "probar": "Probar correo de prueba",
+    "enviando": "Enviando...",
+    "descripcion": "Envía un correo de prueba con la configuración guardada",
+    "error_generico": "Error al conectar con el servidor"
+  }
+}

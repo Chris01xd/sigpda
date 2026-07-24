@@ -1,0 +1,26 @@
+{
+  "titulo": "Dishes",
+  "subtitulo": "Menu management",
+  "boton_nuevo": "New Dish",
+  "confirmar_eliminar": "Delete dish?",
+  "tabla": {
+    "nombre": "Name",
+    "categoria": "Category",
+    "precio": "Price",
+    "costo": "Cost",
+    "tiempo": "Time (min)"
+  },
+  "modal": {
+    "nuevo": "New Dish",
+    "editar": "Edit Dish"
+  },
+  "formulario": {
+    "nombre": "Name",
+    "categoria": "Category",
+    "seleccionar": "Select...",
+    "precio_venta": "Sale price (S/)",
+    "costo_estimado": "Estimated cost (S/)",
+    "tiempo_preparacion": "Preparation time (min)",
+    "descripcion": "Description"
+  }
+}

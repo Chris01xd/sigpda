@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import api from '../api/client'
 import DataTable from '../components/DataTable'
 
@@ -16,6 +17,7 @@ interface BitacoraRow {
 }
 
 export default function Bitacora() {
+  const { t } = useTranslation('bitacora')
   const [registros, setRegistros] = useState<BitacoraRow[]>([])
   const [filtroModulo, setFiltroModulo] = useState('')
   const [filtroResultado, setFiltroResultado] = useState('')
@@ -30,15 +32,15 @@ export default function Bitacora() {
   }
 
   const columns = [
-    { key: 'fecha', header: 'Fecha' },
-    { key: 'hora', header: 'Hora' },
-    { key: 'usuario_nombre', header: 'Usuario' },
-    { key: 'rol', header: 'Rol' },
-    { key: 'modulo', header: 'Módulo' },
-    { key: 'accion', header: 'Acción' },
-    { key: 'descripcion', header: 'Descripción' },
+    { key: 'fecha', header: t('tabla.fecha') },
+    { key: 'hora', header: t('tabla.hora') },
+    { key: 'usuario_nombre', header: t('tabla.usuario') },
+    { key: 'rol', header: t('tabla.rol') },
+    { key: 'modulo', header: t('tabla.modulo') },
+    { key: 'accion', header: t('tabla.accion') },
+    { key: 'descripcion', header: t('tabla.descripcion') },
     {
-      key: 'resultado', header: 'Resultado',
+      key: 'resultado', header: t('tabla.resultado'),
       render: (r: BitacoraRow) => (
         <span className={`text-xs px-2 py-1 rounded-full font-medium ${
           r.resultado === 'éxito' ? 'bg-green-100 text-green-700' :
@@ -54,28 +56,28 @@ export default function Bitacora() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Bitácora</h1>
-        <p className="text-sm text-gray-500">Registro de actividad del sistema</p>
+        <h1 className="text-2xl font-bold text-gray-800">{t('titulo')}</h1>
+        <p className="text-sm text-gray-500">{t('subtitulo')}</p>
       </div>
 
       <div className="card mb-4">
         <div className="flex gap-4">
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Módulo</label>
+            <label className="block text-xs font-medium text-gray-500 mb-1">{t('filtros.modulo')}</label>
             <input
               value={filtroModulo}
               onChange={(e) => setFiltroModulo(e.target.value)}
               className="input-field w-48"
-              placeholder="Filtrar módulo..."
+              placeholder={t('filtros.modulo_placeholder')}
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Resultado</label>
+            <label className="block text-xs font-medium text-gray-500 mb-1">{t('filtros.resultado')}</label>
             <select value={filtroResultado} onChange={(e) => setFiltroResultado(e.target.value)} className="input-field w-40">
-              <option value="">Todos</option>
-              <option value="éxito">Éxito</option>
-              <option value="error">Error</option>
-              <option value="advertencia">Advertencia</option>
+              <option value="">{t('filtros.todos')}</option>
+              <option value="éxito">{t('filtros.exito')}</option>
+              <option value="error">{t('filtros.error')}</option>
+              <option value="advertencia">{t('filtros.advertencia')}</option>
             </select>
           </div>
         </div>

@@ -12,7 +12,7 @@ from backend.routers import (
     proveedores, platos, insumos, recetas, ventas,
     produccion, desperdicio, dashboard, estadisticas,
     bitacora, configuracion, recomendaciones, ia_prediccion,
-    alertas_inteligentes, sostenibilidad, reportes,
+    alertas_inteligentes, sostenibilidad, reportes, chatbot,
 )
 
 app = FastAPI(
@@ -56,6 +56,7 @@ app.include_router(ia_prediccion.router, prefix="/api/ia", tags=["IA"])
 app.include_router(alertas_inteligentes.router, prefix="/api/alertas-inteligentes", tags=["Alertas Inteligentes"])
 app.include_router(sostenibilidad.router,       prefix="/api/sostenibilidad",       tags=["Sostenibilidad"])
 app.include_router(reportes.router,             prefix="/api/reportes",             tags=["Reportes"])
+app.include_router(chatbot.router,              prefix="/api/chatbot",              tags=["Chatbot"])
 
 
 _NOTIF_SEED = [

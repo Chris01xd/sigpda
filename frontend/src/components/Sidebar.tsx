@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../contexts/AuthContext'
+import LanguageSwitcher from './LanguageSwitcher'
 import {
   LayoutDashboard, Users, Building2, UserCheck, Truck,
   UtensilsCrossed, Package, BookOpen, ShoppingCart,
@@ -9,30 +11,31 @@ import {
 } from 'lucide-react'
 
 const allMenuItems = [
-  { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, modulo: 'dashboard' },
-  { path: '/ventas', label: 'Ventas', icon: ShoppingCart, modulo: 'ventas' },
-  { path: '/produccion', label: 'Producción', icon: Factory, modulo: 'produccion' },
-  { path: '/desperdicio', label: 'Desperdicio', icon: Trash2, modulo: 'desperdicio' },
-  { path: '/platos', label: 'Platos', icon: UtensilsCrossed, modulo: 'platos' },
-  { path: '/insumos', label: 'Insumos', icon: Package, modulo: 'insumos' },
-  { path: '/recetas', label: 'Recetas', icon: BookOpen, modulo: 'recetas' },
-  { path: '/clientes', label: 'Clientes', icon: UserCheck, modulo: 'clientes' },
-  { path: '/proveedores', label: 'Proveedores', icon: Truck, modulo: 'proveedores' },
-  { path: '/restaurantes', label: 'Restaurantes', icon: Building2, modulo: 'restaurantes' },
-  { path: '/usuarios', label: 'Usuarios', icon: Users, modulo: 'usuarios' },
-  { path: '/recomendaciones', label: 'Recomendaciones', icon: Lightbulb, modulo: 'prediccion' },
-  { path: '/ia', label: 'IA / Predicciones', icon: Brain, modulo: 'prediccion' },
-  { path: '/alertas-inteligentes', label: 'Alertas Inteligentes', icon: BellRing, modulo: 'prediccion' },
-  { path: '/estadisticas', label: 'Estadísticas', icon: BarChart3, modulo: 'estadisticas' },
-  { path: '/bitacora', label: 'Bitácora', icon: ScrollText, modulo: 'bitacora' },
-  { path: '/pedidos',        label: 'Pedidos',        icon: ShoppingBag, modulo: 'prediccion'  },
-  { path: '/sostenibilidad', label: 'Sostenibilidad', icon: Leaf,        modulo: 'estadisticas' },
-  { path: '/reportes',       label: 'Reportes PDF',   icon: FileText,    modulo: 'estadisticas' },
-  { path: '/configuracion',  label: 'Configuración',  icon: Settings,  modulo: 'configuracion' },
+  { path: '/dashboard', labelKey: 'nav.dashboard', icon: LayoutDashboard, modulo: 'dashboard' },
+  { path: '/ventas', labelKey: 'nav.ventas', icon: ShoppingCart, modulo: 'ventas' },
+  { path: '/produccion', labelKey: 'nav.produccion', icon: Factory, modulo: 'produccion' },
+  { path: '/desperdicio', labelKey: 'nav.desperdicio', icon: Trash2, modulo: 'desperdicio' },
+  { path: '/platos', labelKey: 'nav.platos', icon: UtensilsCrossed, modulo: 'platos' },
+  { path: '/insumos', labelKey: 'nav.insumos', icon: Package, modulo: 'insumos' },
+  { path: '/recetas', labelKey: 'nav.recetas', icon: BookOpen, modulo: 'recetas' },
+  { path: '/clientes', labelKey: 'nav.clientes', icon: UserCheck, modulo: 'clientes' },
+  { path: '/proveedores', labelKey: 'nav.proveedores', icon: Truck, modulo: 'proveedores' },
+  { path: '/restaurantes', labelKey: 'nav.restaurantes', icon: Building2, modulo: 'restaurantes' },
+  { path: '/usuarios', labelKey: 'nav.usuarios', icon: Users, modulo: 'usuarios' },
+  { path: '/recomendaciones', labelKey: 'nav.recomendaciones', icon: Lightbulb, modulo: 'prediccion' },
+  { path: '/ia', labelKey: 'nav.ia', icon: Brain, modulo: 'prediccion' },
+  { path: '/alertas-inteligentes', labelKey: 'nav.alertas_inteligentes', icon: BellRing, modulo: 'prediccion' },
+  { path: '/estadisticas', labelKey: 'nav.estadisticas', icon: BarChart3, modulo: 'estadisticas' },
+  { path: '/bitacora', labelKey: 'nav.bitacora', icon: ScrollText, modulo: 'bitacora' },
+  { path: '/pedidos',        labelKey: 'nav.pedidos',        icon: ShoppingBag, modulo: 'prediccion'  },
+  { path: '/sostenibilidad', labelKey: 'nav.sostenibilidad', icon: Leaf,        modulo: 'estadisticas' },
+  { path: '/reportes',       labelKey: 'nav.reportes',   icon: FileText,    modulo: 'estadisticas' },
+  { path: '/configuracion',  labelKey: 'nav.configuracion',  icon: Settings,  modulo: 'configuracion' },
 ]
 
 export default function Sidebar() {
   const { user, logout, hasPermission } = useAuth()
+  const { t } = useTranslation()
 
   const visibleItems = allMenuItems.filter((item) => hasPermission(item.modulo, 'ver'))
 
@@ -43,8 +46,8 @@ export default function Sidebar() {
           <ChefHat className="w-6 h-6" />
         </div>
         <div>
-          <h1 className="text-sm font-bold leading-tight">SIGPDA</h1>
-          <p className="text-xs text-primary-300">v2.0</p>
+          <h1 className="text-sm font-bold leading-tight">{t('app.nombre')}</h1>
+          <p className="text-xs text-primary-300">{t('app.version')}</p>
         </div>
       </div>
 
@@ -71,18 +74,19 @@ export default function Sidebar() {
             }
           >
             <item.icon className="w-4 h-4 flex-shrink-0" />
-            {item.label}
+            {t(item.labelKey)}
           </NavLink>
         ))}
       </nav>
 
-      <div className="p-3 border-t border-primary-700">
+      <div className="p-3 border-t border-primary-700 space-y-1">
+        <LanguageSwitcher />
         <button
           onClick={logout}
           className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-primary-200 hover:bg-primary-800 hover:text-white rounded-lg transition-colors"
         >
           <LogOut className="w-4 h-4" />
-          Cerrar sesión
+          {t('sidebar.cerrar_sesion')}
         </button>
       </div>
     </aside>

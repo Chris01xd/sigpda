@@ -1,0 +1,72 @@
+{
+  "titulo": "Smart Alerts",
+  "subtitulo": "Internal preventive alert engine — no external dependencies",
+  "config": {
+    "clima": "Weather",
+    "clima_opciones": {
+      "soleado": "Sunny",
+      "nublado": "Cloudy",
+      "lluvioso": "Rainy"
+    },
+    "evento": "Event",
+    "evento_opciones": {
+      "sin_evento": "No event",
+      "evento_local": "Local event",
+      "feriado_nacional": "National holiday"
+    },
+    "generar": "Generate alerts",
+    "generando": "Generating..."
+  },
+  "mensajes": {
+    "generadas": "{{count}} new alert(s) generated.",
+    "error_cargar": "Error loading alerts",
+    "error_generar": "Error generating alerts"
+  },
+  "resumen": {
+    "total": "Total"
+  },
+  "filtros": {
+    "estado": "Status",
+    "estados": {
+      "pendiente": "Pending",
+      "leida": "Read",
+      "resuelta": "Resolved"
+    },
+    "tipo": "Type",
+    "nivel": "Level",
+    "todos": "All",
+    "limpiar": "Clear filters"
+  },
+  "tipos": {
+    "RIESGO_SOBREPRODUCCION": "Overproduction risk",
+    "PRODUCTO_PROXIMO_VENCER": "Near expiration",
+    "STOCK_EXCESIVO": "Excess stock",
+    "BAJA_DEMANDA": "Low demand",
+    "ALTO_DESPERDICIO": "High waste",
+    "RECOMENDACION_MENU": "Menu recommendation",
+    "ALERTA_CRITICA": "Critical alert"
+  },
+  "lista": {
+    "cargando": "Loading alerts...",
+    "vacio": "There are no {{estado}} alerts matching the selected filters.",
+    "ayuda_generar": "Use \"Generate alerts\" to analyze the current state of the system."
+  },
+  "tarjeta": {
+    "riesgo": "{{valor}}% risk",
+    "ver_detalle": "View detail",
+    "marcar_leida": "Mark as read",
+    "resolver": "Resolve"
+  },
+  "modal": {
+    "descripcion": "Description",
+    "recomendacion": "Operational recommendation",
+    "plato": "Dish",
+    "insumo": "Ingredient",
+    "porcentaje_riesgo": "% Risk",
+    "valor_actual": "Current value",
+    "generada": "Generated",
+    "estado": "Status",
+    "marcar_leida": "Mark as read",
+    "resolver_alerta": "Resolve alert"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "titulo": "Recomendaciones IA",
+  "subtitulo": "Sugerencias inteligentes basadas en datos",
+  "modulo_label": "Módulo",
+  "sin_alertas": {
+    "titulo": "Sin alertas activas",
+    "detalle": "El sistema no detecta problemas críticos en este momento"
+  },
+  "prioridad": {
+    "alta": "Alta prioridad",
+    "media": "Prioridad media",
+    "baja": "Informativas"
+  }
+}

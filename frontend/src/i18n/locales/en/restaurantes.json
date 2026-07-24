@@ -1,0 +1,31 @@
+{
+  "titulo": "Restaurants / SMEs",
+  "subtitulo": "Registered establishments",
+  "nuevo_restaurante": "New Restaurant",
+  "tabla": {
+    "nombre_comercial": "Business name",
+    "ruc": "Tax ID",
+    "responsable": "Manager",
+    "telefono": "Phone",
+    "distrito": "District",
+    "estado": "Status"
+  },
+  "estado": {
+    "activo": "Active",
+    "inactivo": "Inactive"
+  },
+  "modal": {
+    "editar_titulo": "Edit Restaurant",
+    "nuevo_titulo": "New Restaurant",
+    "nombre_comercial": "Business name *",
+    "ruc": "Tax ID",
+    "responsable": "Manager",
+    "telefono": "Phone",
+    "correo": "Email",
+    "direccion": "Address",
+    "distrito": "District",
+    "provincia": "Province",
+    "cancelar": "Cancel",
+    "guardar": "Save"
+  }
+}

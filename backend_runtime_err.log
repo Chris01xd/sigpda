@@ -2,3 +2,6 @@ INFO:     Started server process [14008]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+transformer_random_forest falló: [WinError 5] Acceso denegado
+Tuning de transformer_random_forest falló: [WinError 5] Acceso denegado
+Tuning de transformer_gradient_boosting falló: [WinError 5] Acceso denegado

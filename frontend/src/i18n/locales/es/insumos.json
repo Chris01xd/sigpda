@@ -1,0 +1,30 @@
+{
+  "titulo": "Insumos",
+  "subtitulo": "Inventario de ingredientes y materiales",
+  "boton_nuevo": "Nuevo Insumo",
+  "aviso_stock_critico": "insumos con stock crítico",
+  "confirmar_eliminar": "¿Eliminar insumo?",
+  "tabla": {
+    "nombre": "Nombre",
+    "categoria": "Categoría",
+    "stock": "Stock",
+    "minimo": "Mínimo",
+    "costo_unitario": "Costo/U",
+    "vencimiento": "Vencimiento"
+  },
+  "modal": {
+    "nuevo": "Nuevo Insumo",
+    "editar": "Editar Insumo"
+  },
+  "formulario": {
+    "nombre": "Nombre",
+    "categoria": "Categoría",
+    "categoria_placeholder": "Ej: Vegetales",
+    "unidad_medida": "Unidad de medida",
+    "stock_disponible": "Stock disponible",
+    "stock_minimo": "Stock mínimo",
+    "costo_unitario": "Costo unitario (S/)",
+    "fecha_vencimiento": "Fecha vencimiento",
+    "proveedor": "Proveedor (nombre)"
+  }
+}

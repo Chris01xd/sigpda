@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Leaf, Droplets, TrendingDown, TrendingUp, Flame, Car, ShowerHead, RefreshCw } from 'lucide-react'
 import api from '../api/client'
 
@@ -22,13 +23,13 @@ interface Ahorro {
   tendencia: string
 }
 
-const PERIODOS = [
-  { label: '7 días',  value: 7 },
-  { label: '30 días', value: 30 },
-  { label: '90 días', value: 90 },
-]
-
 export default function Sostenibilidad() {
+  const { t } = useTranslation('sostenibilidad')
+  const PERIODOS = [
+    { label: t('periodos.dias_7'),  value: 7 },
+    { label: t('periodos.dias_30'), value: 30 },
+    { label: t('periodos.dias_90'), value: 90 },
+  ]
   const [dias,    setDias]    = useState(30)
   const [huella,  setHuella]  = useState<Huella | null>(null)
   const [ahorro,  setAhorro]  = useState<Ahorro | null>(null)
@@ -62,10 +63,10 @@ export default function Sostenibilidad() {
         <div>
           <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
             <Leaf className="w-6 h-6 text-green-600" />
-            Sostenibilidad e Impacto Ambiental
+            {t('titulo')}
           </h1>
           <p className="text-sm text-gray-500 mt-1">
-            Huella de carbono e hídrica generada por el desperdicio alimentario
+            {t('subtitulo')}
           </p>
         </div>
         <div className="flex gap-2 items-center">
@@ -89,7 +90,7 @@ export default function Sostenibilidad() {
         </div>
       </div>
 
-      {loading && <div className="text-center py-16 text-gray-400">Calculando...</div>}
+      {loading && <div className="text-center py-16 text-gray-400">{t('calculando')}</div>}
 
       {!loading && huella && ahorro && (
         <>
@@ -98,65 +99,65 @@ export default function Sostenibilidad() {
             <div className="card p-4 border-l-4 border-red-500">
               <div className="flex items-center gap-2 mb-1">
                 <Flame className="w-4 h-4 text-red-500" />
-                <p className="text-xs text-gray-500">CO₂ Equivalente</p>
+                <p className="text-xs text-gray-500">{t('kpi.co2_equivalente')}</p>
               </div>
               <p className="text-2xl font-bold text-red-600">{huella.total_co2_kg} <span className="text-sm font-normal">kg</span></p>
-              <p className="text-xs text-gray-400 mt-1">últimos {dias} días</p>
+              <p className="text-xs text-gray-400 mt-1">{t('kpi.ultimos_dias', { dias })}</p>
             </div>
             <div className="card p-4 border-l-4 border-blue-500">
               <div className="flex items-center gap-2 mb-1">
                 <Droplets className="w-4 h-4 text-blue-500" />
-                <p className="text-xs text-gray-500">Agua desperdiciada</p>
+                <p className="text-xs text-gray-500">{t('kpi.agua_desperdiciada')}</p>
               </div>
               <p className="text-2xl font-bold text-blue-600">{huella.total_agua_litros.toLocaleString()} <span className="text-sm font-normal">L</span></p>
-              <p className="text-xs text-gray-400 mt-1">últimos {dias} días</p>
+              <p className="text-xs text-gray-400 mt-1">{t('kpi.ultimos_dias', { dias })}</p>
             </div>
             <div className="card p-4 border-l-4 border-orange-500">
               <div className="flex items-center gap-2 mb-1">
                 <Leaf className="w-4 h-4 text-orange-500" />
-                <p className="text-xs text-gray-500">Alimentos desperdiciados</p>
+                <p className="text-xs text-gray-500">{t('kpi.alimentos_desperdiciados')}</p>
               </div>
               <p className="text-2xl font-bold text-orange-600">{huella.total_kg_desperdiciado} <span className="text-sm font-normal">kg</span></p>
-              <p className="text-xs text-gray-400 mt-1">últimos {dias} días</p>
+              <p className="text-xs text-gray-400 mt-1">{t('kpi.ultimos_dias', { dias })}</p>
             </div>
             <div className="card p-4 border-l-4 border-purple-500">
               <div className="flex items-center gap-2 mb-1">
                 <TrendingDown className="w-4 h-4 text-purple-500" />
-                <p className="text-xs text-gray-500">Costo desperdiciado</p>
+                <p className="text-xs text-gray-500">{t('kpi.costo_desperdiciado')}</p>
               </div>
               <p className="text-2xl font-bold text-purple-600">S/ {huella.total_costo_soles.toFixed(2)}</p>
-              <p className="text-xs text-gray-400 mt-1">últimos {dias} días</p>
+              <p className="text-xs text-gray-400 mt-1">{t('kpi.ultimos_dias', { dias })}</p>
             </div>
           </div>
 
           {/* Equivalencias */}
           <div className="card p-5 mb-6">
-            <h2 className="text-sm font-semibold text-gray-700 mb-4">Equivalencias del impacto ambiental</h2>
+            <h2 className="text-sm font-semibold text-gray-700 mb-4">{t('equivalencias.titulo')}</h2>
             <div className="grid grid-cols-3 gap-6 text-center">
               <div>
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                   <Leaf className="w-6 h-6 text-green-600" />
                 </div>
                 <p className="text-3xl font-bold text-green-700">{huella.equivalencias.arboles_anuales}</p>
-                <p className="text-xs text-gray-500 mt-1">árboles necesarios un año<br/>para absorber este CO₂</p>
+                <p className="text-xs text-gray-500 mt-1">{t('equivalencias.arboles_linea1')}<br/>{t('equivalencias.arboles_linea2')}</p>
               </div>
               <div>
                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
                   <Car className="w-6 h-6 text-gray-600" />
                 </div>
                 <p className="text-3xl font-bold text-gray-700">{huella.equivalencias.km_en_auto.toLocaleString()}</p>
-                <p className="text-xs text-gray-500 mt-1">km en auto equivalentes<br/>(0.21 kg CO₂/km promedio)</p>
+                <p className="text-xs text-gray-500 mt-1">{t('equivalencias.auto_linea1')}<br/>{t('equivalencias.auto_linea2')}</p>
               </div>
               <div>
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
                   <ShowerHead className="w-6 h-6 text-blue-600" />
                 </div>
                 <p className="text-3xl font-bold text-blue-700">{huella.equivalencias.duchas_perdidas.toLocaleString()}</p>
-                <p className="text-xs text-gray-500 mt-1">duchas de 8 min equivalentes<br/>(65 L por ducha)</p>
+                <p className="text-xs text-gray-500 mt-1">{t('equivalencias.duchas_linea1')}<br/>{t('equivalencias.duchas_linea2')}</p>
               </div>
             </div>
             <p className="text-xs text-gray-400 text-center mt-4">
-              Factores de emisión: FAO / Our World in Data 2023
+              {t('equivalencias.factores_emision')}
             </p>
           </div>
 
@@ -164,31 +165,31 @@ export default function Sostenibilidad() {
             {/* Ahorro económico */}
             <div className="card p-5">
               <h2 className="text-sm font-semibold text-gray-700 mb-4 flex items-center gap-2">
-                {tendIcon} Ahorro Económico
+                {tendIcon} {t('ahorro.titulo')}
               </h2>
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-sm text-gray-500">Costo este período</span>
+                  <span className="text-sm text-gray-500">{t('ahorro.costo_actual')}</span>
                   <span className="font-semibold text-red-600">S/ {ahorro.costo_actual.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-sm text-gray-500">Costo período anterior</span>
+                  <span className="text-sm text-gray-500">{t('ahorro.costo_anterior')}</span>
                   <span className="font-semibold text-gray-700">S/ {ahorro.costo_anterior.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-sm text-gray-500">Ahorro / pérdida</span>
+                  <span className="text-sm text-gray-500">{t('ahorro.ahorro_perdida')}</span>
                   <span className={`font-bold text-lg ${tendColor}`}>
                     {ahorro.ahorro_periodo >= 0 ? '+' : ''}S/ {ahorro.ahorro_periodo.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-sm text-gray-500">% de mejora</span>
+                  <span className="text-sm text-gray-500">{t('ahorro.porcentaje_mejora')}</span>
                   <span className={`font-semibold ${tendColor}`}>
                     {ahorro.porcentaje_mejora > 0 ? '↓' : ahorro.porcentaje_mejora < 0 ? '↑' : '='} {Math.abs(ahorro.porcentaje_mejora).toFixed(1)}%
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2">
-                  <span className="text-sm text-gray-500">Total histórico desperdiciado</span>
+                  <span className="text-sm text-gray-500">{t('ahorro.total_historico')}</span>
                   <span className="font-semibold text-gray-700">S/ {ahorro.total_historico.toFixed(2)}</span>
                 </div>
               </div>
@@ -197,28 +198,28 @@ export default function Sostenibilidad() {
                 ahorro.tendencia === 'empeora' ? 'bg-red-50 text-red-700' : 'bg-gray-50 text-gray-600'
               }`}>
                 {ahorro.tendencia === 'mejora'
-                  ? `El restaurante redujo su desperdicio en S/ ${ahorro.ahorro_periodo.toFixed(2)} respecto al período anterior`
+                  ? t('ahorro.mensaje_mejora', { monto: ahorro.ahorro_periodo.toFixed(2) })
                   : ahorro.tendencia === 'empeora'
-                  ? `El desperdicio aumentó S/ ${Math.abs(ahorro.ahorro_periodo).toFixed(2)} respecto al período anterior`
-                  : 'Sin cambio respecto al período anterior'}
+                  ? t('ahorro.mensaje_empeora', { monto: Math.abs(ahorro.ahorro_periodo).toFixed(2) })
+                  : t('ahorro.mensaje_sin_cambio')}
               </div>
             </div>
 
             {/* Por categoría */}
             <div className="card p-5">
-              <h2 className="text-sm font-semibold text-gray-700 mb-4">Impacto por categoría de alimento</h2>
+              <h2 className="text-sm font-semibold text-gray-700 mb-4">{t('categoria.titulo')}</h2>
               {huella.por_categoria.length === 0 ? (
-                <p className="text-sm text-gray-400 text-center py-8">Sin datos en el período</p>
+                <p className="text-sm text-gray-400 text-center py-8">{t('categoria.sin_datos')}</p>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
                       <tr className="bg-gray-50">
-                        <th className="text-left px-2 py-2 text-gray-500">Categoría</th>
+                        <th className="text-left px-2 py-2 text-gray-500">{t('categoria.tabla.categoria')}</th>
                         <th className="text-right px-2 py-2 text-gray-500">kg</th>
                         <th className="text-right px-2 py-2 text-gray-500">CO₂ kg</th>
-                        <th className="text-right px-2 py-2 text-gray-500">Agua L</th>
-                        <th className="text-right px-2 py-2 text-gray-500">Costo S/</th>
+                        <th className="text-right px-2 py-2 text-gray-500">{t('categoria.tabla.agua')} L</th>
+                        <th className="text-right px-2 py-2 text-gray-500">{t('categoria.tabla.costo')} S/</th>
                       </tr>
                     </thead>
                     <tbody>

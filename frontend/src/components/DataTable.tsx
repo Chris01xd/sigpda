@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface Column<T> {
   key: string
@@ -18,6 +19,7 @@ export default function DataTable<T extends Record<string, unknown>>({
   data,
   pageSize = 15,
 }: DataTableProps<T>) {
+  const { t } = useTranslation()
   const [page, setPage] = useState(1)
   const total = Math.ceil(data.length / pageSize)
   const slice = data.slice((page - 1) * pageSize, page * pageSize)
@@ -42,7 +44,7 @@ export default function DataTable<T extends Record<string, unknown>>({
             {slice.length === 0 ? (
               <tr>
                 <td colSpan={columns.length} className="px-4 py-8 text-center text-gray-400">
-                  Sin datos
+                  {t('tabla.sin_datos')}
                 </td>
               </tr>
             ) : (
@@ -62,7 +64,7 @@ export default function DataTable<T extends Record<string, unknown>>({
       {total > 1 && (
         <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
           <span>
-            {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, data.length)} de {data.length}
+            {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, data.length)} {t('tabla.de')} {data.length}
           </span>
           <div className="flex gap-1">
             <button

@@ -1,0 +1,18 @@
+{
+  "titulo": "统计",
+  "subtitulo": "系统历史分析",
+  "kpi": {
+    "ventas_mes": "本月销售额",
+    "ventas_anio": "本年销售额",
+    "desperdicio_mes": "本月损耗",
+    "transacciones_mes": "本月交易数",
+    "ventas": "笔销售"
+  },
+  "graficos": {
+    "ventas_mensuales": "月度销售额（12个月）",
+    "costo_desperdicio_mensual": "月度损耗成本",
+    "total": "总计",
+    "total_ventas": "销售总额",
+    "costo_desperdicio": "损耗成本"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "titulo": "仪表盘",
+  "subtitulo": "系统实时概览",
+  "kpi": {
+    "ventas_mes": "本月销售额",
+    "ventas_hoy": "今日销售",
+    "transacciones": "笔交易",
+    "costo_desperdicio_mes": "本月浪费成本",
+    "stock_critico": "库存告急",
+    "insumos_bajo_minimo": "食材低于最低库存",
+    "alertas_criticas": "严重警报",
+    "pendientes_atencion": "待处理"
+  },
+  "eficiencia": {
+    "titulo": "运营效率指数",
+    "produccion": "生产",
+    "alertas": "警报",
+    "desperdicio": "浪费"
+  },
+  "graficos": {
+    "ventas_30_dias": "近30天销售额",
+    "total": "总计",
+    "desperdicio_por_motivo": "按原因划分的浪费",
+    "costo": "成本",
+    "sin_datos_desperdicio": "暂无浪费数据",
+    "top_platos": "畅销菜品前10名"
+  },
+  "alertas": {
+    "titulo": "智能警报",
+    "ver_todas": "查看全部",
+    "sin_pendientes": "暂无待处理警报"
+  }
+}

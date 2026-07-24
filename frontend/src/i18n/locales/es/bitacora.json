@@ -1,0 +1,23 @@
+{
+  "titulo": "Bitácora",
+  "subtitulo": "Registro de actividad del sistema",
+  "filtros": {
+    "modulo": "Módulo",
+    "modulo_placeholder": "Filtrar módulo...",
+    "resultado": "Resultado",
+    "todos": "Todos",
+    "exito": "Éxito",
+    "error": "Error",
+    "advertencia": "Advertencia"
+  },
+  "tabla": {
+    "fecha": "Fecha",
+    "hora": "Hora",
+    "usuario": "Usuario",
+    "rol": "Rol",
+    "modulo": "Módulo",
+    "accion": "Acción",
+    "descripcion": "Descripción",
+    "resultado": "Resultado"
+  }
+}

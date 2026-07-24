@@ -1,0 +1,158 @@
+{
+  "titulo": "IA / Predicciones",
+  "subtitulo": "Predicción de demanda con Machine Learning — Comparación automática de modelos",
+  "tiempo_computo": "Tiempo de cómputo: {{ms}} ms",
+  "errores": {
+    "seleccionar_plato": "Selecciona un plato",
+    "prediccion": "Error en predicción",
+    "comparacion": "Error en la comparación de modelos",
+    "eda": "Error al generar el análisis exploratorio de datos",
+    "entrenamiento_completo": "Error en el entrenamiento completo"
+  },
+  "parametros": {
+    "titulo": "Parámetros",
+    "plato_label": "Plato *",
+    "seleccionar": "Seleccionar...",
+    "modelo_label": "Modelo (predicción individual)",
+    "avanzado": "Avanzado",
+    "dias_label": "Días a predecir",
+    "clima_label": "Clima",
+    "evento_label": "Evento",
+    "boton_ejecutar": "Ejecutar Predicción",
+    "boton_calculando": "Calculando...",
+    "modelos": {
+      "random_forest": {
+        "label": "Random Forest",
+        "desc": "Ensemble de árboles de decisión"
+      },
+      "regresion_lineal": {
+        "label": "Regresión Lineal",
+        "desc": "Modelo lineal clásico"
+      },
+      "decision_tree": {
+        "label": "Árbol de Decisión",
+        "desc": "Árbol de decisión simple"
+      },
+      "transformer_hibrido": {
+        "label": "Transformer Híbrido",
+        "desc": "Multi-Head Attention + Ensemble (RF + GBR + LR + DT) + Ridge Meta-Learner"
+      }
+    },
+    "climas": {
+      "soleado": "☀️ Soleado",
+      "nublado": "⛅ Nublado",
+      "lluvia": "🌧️ Lluvia"
+    },
+    "eventos": {
+      "normal": "Normal",
+      "evento_local": "Evento local",
+      "feriado": "Feriado"
+    },
+    "transformer": {
+      "titulo": "Hiperparámetros Transformer",
+      "cabezas_label": "Cabezas atención",
+      "dk_label": "d_k (dim. clave)",
+      "resumen": "{{nHeads}} cabezas × d_k={{dK}} → {{total}} dimensiones de atención"
+    }
+  },
+  "eda_seccion": {
+    "titulo": "Análisis exploratorio de datos",
+    "descripcion": "Estadísticas descriptivas, calidad de datos, distribución, estacionalidad y correlaciones del histórico del plato.",
+    "boton": "Analizar datos (EDA)",
+    "boton_cargando": "Analizando datos...",
+    "cargando_resultado": "Generando análisis exploratorio de datos...",
+    "encabezado": "Análisis Exploratorio de Datos — {{plato}}"
+  },
+  "comparacion_seccion": {
+    "titulo": "Comparación automática (tesis)",
+    "descripcion": "Compara ARIMA, Prophet y Transformer con hiperparámetros seleccionados automáticamente. Solo elige plato, días, clima y evento.",
+    "boton": "Comparar modelos automáticamente",
+    "boton_cargando": "Comparando modelos..."
+  },
+  "entrenamiento_seccion": {
+    "titulo": "Experimentación completa (5 modelos)",
+    "descripcion": "ARIMA, Prophet, Holt-Winters, Transformer+RF y Transformer+GBR con validación cruzada, optimización de hiperparámetros y pruebas estadísticas (Friedman, Wilcoxon, Diebold-Mariano). Puede tardar varias decenas de segundos.",
+    "boton": "Ejecutar experimentación completa",
+    "boton_cargando": "Entrenando (puede tardar)...",
+    "cargando_resultado": "Ejecutando experimentación completa...",
+    "cargando_detalle": "5 modelos, validación cruzada, tuning y pruebas estadísticas — puede tardar varias decenas de segundos."
+  },
+  "metricas_individuales": {
+    "titulo": "Métricas del modelo",
+    "mae_desc": "Error Absoluto Medio",
+    "r2_desc": "Bondad de ajuste"
+  },
+  "estado_vacio": {
+    "titulo": "Selecciona un plato y ejecuta una predicción",
+    "descripcion": "El sistema requiere al menos 10 registros históricos para predicción individual y 30 para comparación de modelos."
+  },
+  "prediccion": {
+    "grafico_titulo": "Demanda estimada vs. producción recomendada",
+    "serie_demanda": "Demanda estimada",
+    "serie_produccion": "Producción recomendada",
+    "tabla_titulo": "Detalle por día",
+    "columnas": {
+      "fecha": "Fecha",
+      "demanda": "Demanda",
+      "produccion_rec": "Producción rec.",
+      "confianza": "Confianza",
+      "riesgo": "Riesgo"
+    },
+    "transformer": {
+      "titulo": "Transformer Híbrido — Arquitectura",
+      "cabezas": "Cabezas:",
+      "dk": "d_k:",
+      "dim_total": "Dim. total:",
+      "pesos_titulo": "Pesos del Meta-Learner (Ridge)",
+      "peso": "Peso",
+      "importancia_titulo": "Importancia de features (RF interno)",
+      "importancia": "Importancia"
+    }
+  },
+  "comparacion": {
+    "titulo": "Comparación Automática de Modelos",
+    "subtitulo": "{{entrenamiento}} días de entrenamiento / {{prueba}} días de prueba (split cronológico)",
+    "modelo_ganador_label": "Modelo ganador",
+    "mae_ganador": "MAE = {{valor}}",
+    "metricas_titulo": "Métricas de error por modelo",
+    "metricas_nota": "(valores menores → mayor precisión)",
+    "columnas": {
+      "modelo": "Modelo",
+      "mae": "MAE",
+      "rmse": "RMSE",
+      "mape": "MAPE (%)",
+      "r2": "R²",
+      "estado": "Estado"
+    },
+    "badge_error": "Error",
+    "badge_ganador": "Ganador",
+    "badge_evaluado": "Evaluado",
+    "nombres_modelos": {
+      "arima": "ARIMA",
+      "prophet": "Prophet",
+      "transformer_hibrido": "Transformer Híbrido"
+    },
+    "interpretacion_titulo": "Interpretación del resultado",
+    "interpretacion_nota": "El modelo seleccionado presenta el menor error promedio, por lo tanto, se considera el más adecuado para la predicción del desperdicio alimentario."
+  },
+  "pruebas_estadisticas": {
+    "dm_titulo": "Prueba Diebold-Mariano — Validación estadística",
+    "dm_hipotesis": "H₀: igualdad de precisión predictiva",
+    "vs": "vs",
+    "estadistico_label": "Estadístico DM",
+    "p_valor_label": "p-valor",
+    "significativo_label": "Significativo",
+    "significativo_si": "Sí (p < 0.05)",
+    "significativo_no": "No"
+  },
+  "predicciones_futuras": {
+    "titulo": "Predicciones futuras — {{modelo}}",
+    "subtitulo": "Generadas con el modelo ganador usando hiperparámetros automáticos",
+    "columnas": {
+      "fecha": "Fecha",
+      "demanda_est": "Demanda est.",
+      "produccion_rec": "Prod. recomendada",
+      "riesgo": "Riesgo desperdicio"
+    }
+  }
+}

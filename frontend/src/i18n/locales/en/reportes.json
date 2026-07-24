@@ -1,0 +1,29 @@
+{
+  "titulo": "Reports",
+  "subtitulo": "Generation of executive PDF reports for management and analysis",
+  "descargado_ok": "Report downloaded successfully.",
+  "error_generar": "Error generating the report. Verify that there is data recorded.",
+  "semanal": {
+    "titulo": "Weekly Executive Report",
+    "descripcion": "PDF with period KPIs, carbon and water footprint, top waste by cost, comparative economic savings and active smart alerts.",
+    "items": {
+      "resumen": "Weekly summary (records and costs)",
+      "huella": "Environmental footprint — CO₂, water, equivalences",
+      "top_desperdicio": "Top dishes with the most waste",
+      "ahorro": "Economic savings vs previous period",
+      "alertas": "Pending smart alerts",
+      "recomendaciones": "Operational recommendations"
+    },
+    "generando": "Generating PDF...",
+    "descargar": "Download PDF Report"
+  },
+  "info": {
+    "titulo": "What is this report for?",
+    "dueno_label": "For the restaurant owner:",
+    "dueno_texto": "weekly executive summary with the most important indicators without needing to log into the system.",
+    "auditorias_label": "For audits:",
+    "auditorias_texto": "documented evidence of food waste control with verifiable metrics.",
+    "tesis_label": "For the thesis:",
+    "tesis_texto": "the report includes the carbon footprint calculated with FAO 2023 factors, aligned with SDG 12 (Responsible Production and Consumption)."
+  }
+}

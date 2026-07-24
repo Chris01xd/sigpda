@@ -1,0 +1,15 @@
+{
+  "saludo_inicial": "你好！我是 SIGPDA 助手，可以帮你解答浪费、销售、生产和预测方面的问题。有什么可以帮你的吗？",
+  "abrir": "打开 SIGPDA 助手",
+  "titulo": "SIGPDA 助手",
+  "subtitulo": "餐厅浪费与管理",
+  "activar_voz": "开启语音回复",
+  "desactivar_voz": "关闭语音回复",
+  "cerrar": "关闭",
+  "pensando": "正在思考...",
+  "placeholder_escuchando": "正在聆听...",
+  "placeholder_escribir": "请输入你的问题...",
+  "detener_grabacion": "停止录音",
+  "hablar": "对助手说话",
+  "error_generico": "无法连接聊天助手，请重试。"
+}

@@ -1,0 +1,22 @@
+{
+  "titulo": "Recipes",
+  "subtitulo": "Ingredients per dish",
+  "boton_agregar": "Add Ingredient",
+  "confirmar_eliminar": "Delete recipe?",
+  "tabla": {
+    "plato": "Dish",
+    "insumo": "Supply",
+    "cantidad": "Quantity",
+    "unidad": "Unit"
+  },
+  "modal": {
+    "titulo": "Add Ingredient to Recipe"
+  },
+  "formulario": {
+    "plato": "Dish",
+    "insumo": "Supply",
+    "seleccionar": "Select...",
+    "cantidad": "Quantity",
+    "unidad": "Unit"
+  }
+}

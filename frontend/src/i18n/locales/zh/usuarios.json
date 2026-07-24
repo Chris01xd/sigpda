@@ -1,0 +1,28 @@
+{
+  "titulo": "用户",
+  "subtitulo": "系统访问权限管理",
+  "nuevo_usuario": "新增用户",
+  "confirmar_eliminar": "确定删除该用户吗？",
+  "tabla": {
+    "nombre": "姓名",
+    "usuario": "用户名",
+    "correo": "邮箱",
+    "rol": "角色",
+    "estado": "状态"
+  },
+  "modal": {
+    "editar_titulo": "编辑用户",
+    "nuevo_titulo": "新增用户"
+  },
+  "formulario": {
+    "nombre": "名字 *",
+    "apellido": "姓氏 *",
+    "usuario": "用户名 *",
+    "correo": "邮箱 *",
+    "contrasena": "密码 *",
+    "nueva_contrasena": "新密码",
+    "contrasena_placeholder_editar": "留空则不修改",
+    "rol": "角色 *",
+    "usuario_activo": "启用该用户"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "titulo": "物资",
+  "subtitulo": "食材和物料库存",
+  "boton_nuevo": "新增物资",
+  "aviso_stock_critico": "项物资库存告急",
+  "confirmar_eliminar": "确定删除该物资吗？",
+  "tabla": {
+    "nombre": "名称",
+    "categoria": "类别",
+    "stock": "库存",
+    "minimo": "最低库存",
+    "costo_unitario": "单位成本",
+    "vencimiento": "过期日期"
+  },
+  "modal": {
+    "nuevo": "新增物资",
+    "editar": "编辑物资"
+  },
+  "formulario": {
+    "nombre": "名称",
+    "categoria": "类别",
+    "categoria_placeholder": "例如：蔬菜",
+    "unidad_medida": "计量单位",
+    "stock_disponible": "可用库存",
+    "stock_minimo": "最低库存",
+    "costo_unitario": "单位成本 (S/)",
+    "fecha_vencimiento": "过期日期",
+    "proveedor": "供应商（名称）"
+  }
+}

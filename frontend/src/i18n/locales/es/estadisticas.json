@@ -1,0 +1,18 @@
+{
+  "titulo": "Estadísticas",
+  "subtitulo": "Análisis histórico del sistema",
+  "kpi": {
+    "ventas_mes": "Ventas este mes",
+    "ventas_anio": "Ventas este año",
+    "desperdicio_mes": "Desperdicio (mes)",
+    "transacciones_mes": "Transacciones (mes)",
+    "ventas": "ventas"
+  },
+  "graficos": {
+    "ventas_mensuales": "Ventas mensuales (12 meses)",
+    "costo_desperdicio_mensual": "Costo desperdicio mensual",
+    "total": "Total",
+    "total_ventas": "Total ventas",
+    "costo_desperdicio": "Costo desperdicio"
+  }
+}

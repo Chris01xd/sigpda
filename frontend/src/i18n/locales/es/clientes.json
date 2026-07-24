@@ -1,0 +1,25 @@
+{
+  "titulo": "Clientes",
+  "subtitulo": "Base de datos de clientes",
+  "boton_nuevo": "Nuevo Cliente",
+  "confirmar_eliminar": "¿Eliminar cliente?",
+  "tabla": {
+    "nombre": "Nombre",
+    "tipo_doc": "Tipo Doc.",
+    "documento": "Documento",
+    "telefono": "Teléfono",
+    "correo": "Correo"
+  },
+  "modal": {
+    "nuevo": "Nuevo Cliente",
+    "editar": "Editar Cliente"
+  },
+  "formulario": {
+    "nombre_completo": "Nombre completo",
+    "tipo_documento": "Tipo documento",
+    "numero_documento": "N° Documento",
+    "telefono": "Teléfono",
+    "correo": "Correo",
+    "direccion": "Dirección"
+  }
+}

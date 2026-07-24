@@ -19,9 +19,10 @@
     "rmse": 0.547,
     "mape": 18.2106,
     "smape": 16.7531,
+    "u_theil": 11.4873,
     "r2": -2.9686
   },
-  "fecha_entrenamiento": "2026-07-13T22:13:29.182194+00:00",
+  "fecha_entrenamiento": "2026-07-20T21:42:20.721008+00:00",
   "rango_temporal_datos": {
     "inicio": "2026-01-31",
     "fin": "2026-06-14"

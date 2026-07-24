@@ -1,0 +1,30 @@
+{
+  "titulo": "建议订货清单",
+  "subtitulo": "根据平均销售量和当前库存计算得出",
+  "proyeccion": "预测周期：",
+  "dias_sufijo": "天",
+  "calculando": "正在计算订单...",
+  "kpi": {
+    "insumos_a_pedir": "待订购原料",
+    "proximos_dias": "未来 {{dias}} 天",
+    "costo_estimado": "预估成本",
+    "total_pedido": "订单总额",
+    "proveedores": "供应商",
+    "distintos_a_contactar": "个需联系的不同供应商"
+  },
+  "vacio": {
+    "titulo": "库存足以支撑 {{dias}} 天",
+    "descripcion": "按当前预测无需额外订购。"
+  },
+  "grupo": {
+    "items_costo": "{{cantidad}} 项 · S/ {{costo}}"
+  },
+  "tabla": {
+    "insumo": "原料",
+    "stock_actual": "当前库存",
+    "necesario": "所需数量",
+    "a_pedir": "待订购",
+    "unidad": "单位",
+    "costo_est": "预估成本"
+  }
+}

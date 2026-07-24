@@ -26,3 +26,5 @@ python-docx>=1.1.0
 # Gráficos embebidos en los reportes de IA (PDF/Word); ya es dependencia
 # transitiva de prophet/statsmodels, se fija explícitamente por claridad.
 matplotlib>=3.7.0
+# Chatbot flotante (texto y voz) basado en la API de Google Gemini (nivel gratuito)
+google-genai>=0.7.0

@@ -1,0 +1,14 @@
+{
+  "titulo": "AI Recommendations",
+  "subtitulo": "Smart suggestions based on data",
+  "modulo_label": "Module",
+  "sin_alertas": {
+    "titulo": "No active alerts",
+    "detalle": "The system does not detect any critical issues at this time"
+  },
+  "prioridad": {
+    "alta": "High priority",
+    "media": "Medium priority",
+    "baja": "Informational"
+  }
+}

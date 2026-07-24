@@ -1,0 +1,30 @@
+{
+  "titulo": "Supplies",
+  "subtitulo": "Inventory of ingredients and materials",
+  "boton_nuevo": "New Supply",
+  "aviso_stock_critico": "supplies with critical stock",
+  "confirmar_eliminar": "Delete supply?",
+  "tabla": {
+    "nombre": "Name",
+    "categoria": "Category",
+    "stock": "Stock",
+    "minimo": "Minimum",
+    "costo_unitario": "Cost/U",
+    "vencimiento": "Expiration"
+  },
+  "modal": {
+    "nuevo": "New Supply",
+    "editar": "Edit Supply"
+  },
+  "formulario": {
+    "nombre": "Name",
+    "categoria": "Category",
+    "categoria_placeholder": "E.g.: Vegetables",
+    "unidad_medida": "Unit of measure",
+    "stock_disponible": "Available stock",
+    "stock_minimo": "Minimum stock",
+    "costo_unitario": "Unit cost (S/)",
+    "fecha_vencimiento": "Expiration date",
+    "proveedor": "Supplier (name)"
+  }
+}

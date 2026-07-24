@@ -1,0 +1,52 @@
+{
+  "titulo": "Ventas",
+  "subtitulo": "Registro de transacciones",
+  "nueva_venta": "Nueva Venta",
+  "alerta_agregar_plato": "Agrega al menos un plato",
+  "tabla": {
+    "numero": "N°",
+    "fecha": "Fecha",
+    "hora": "Hora",
+    "tipo": "Tipo",
+    "cliente": "Cliente",
+    "pago": "Pago",
+    "total": "Total"
+  },
+  "metodos": {
+    "efectivo": "Efectivo",
+    "tarjeta": "Tarjeta",
+    "yape": "Yape",
+    "plin": "Plin",
+    "transferencia": "Transferencia"
+  },
+  "comprobantes": {
+    "ticket": "Ticket",
+    "boleta": "Boleta",
+    "factura": "Factura"
+  },
+  "modal_nueva_venta": {
+    "titulo": "Nueva Venta",
+    "metodo_pago": "Método de pago",
+    "comprobante": "Comprobante",
+    "cliente_opcional": "Cliente (opcional)",
+    "cliente_placeholder": "Nombre del cliente",
+    "documento_opcional": "Documento (opcional)",
+    "documento_placeholder": "DNI / RUC",
+    "seleccionar_platos": "Seleccionar platos",
+    "pedido": "Pedido",
+    "total_label": "Total:",
+    "registrar_venta": "Registrar Venta"
+  },
+  "modal_detalle": {
+    "titulo": "Venta N° {{numero}}",
+    "fecha": "Fecha:",
+    "hora": "Hora:",
+    "comprobante": "Comprobante:",
+    "pago": "Pago:",
+    "cliente": "Cliente:",
+    "plato": "Plato",
+    "cantidad": "Cant.",
+    "subtotal": "Subtotal",
+    "total": "Total"
+  }
+}

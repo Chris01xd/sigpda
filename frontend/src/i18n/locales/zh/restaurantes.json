@@ -1,0 +1,31 @@
+{
+  "titulo": "餐厅 / 中小企业",
+  "subtitulo": "已注册的场所",
+  "nuevo_restaurante": "新增餐厅",
+  "tabla": {
+    "nombre_comercial": "商业名称",
+    "ruc": "税号",
+    "responsable": "负责人",
+    "telefono": "电话",
+    "distrito": "所在区",
+    "estado": "状态"
+  },
+  "estado": {
+    "activo": "启用",
+    "inactivo": "停用"
+  },
+  "modal": {
+    "editar_titulo": "编辑餐厅",
+    "nuevo_titulo": "新增餐厅",
+    "nombre_comercial": "商业名称 *",
+    "ruc": "税号",
+    "responsable": "负责人",
+    "telefono": "电话",
+    "correo": "邮箱",
+    "direccion": "地址",
+    "distrito": "所在区",
+    "provincia": "所在省",
+    "cancelar": "取消",
+    "guardar": "保存"
+  }
+}

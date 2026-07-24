@@ -1,0 +1,158 @@
+{
+  "titulo": "人工智能 / 预测",
+  "subtitulo": "基于机器学习的需求预测 — 自动模型比较",
+  "tiempo_computo": "计算时间：{{ms}} 毫秒",
+  "errores": {
+    "seleccionar_plato": "请选择一道菜品",
+    "prediccion": "预测出错",
+    "comparacion": "模型比较出错",
+    "eda": "生成探索性数据分析时出错",
+    "entrenamiento_completo": "完整训练过程出错"
+  },
+  "parametros": {
+    "titulo": "参数",
+    "plato_label": "菜品 *",
+    "seleccionar": "请选择...",
+    "modelo_label": "模型（单项预测）",
+    "avanzado": "高级",
+    "dias_label": "预测天数",
+    "clima_label": "天气",
+    "evento_label": "活动",
+    "boton_ejecutar": "执行预测",
+    "boton_calculando": "计算中...",
+    "modelos": {
+      "random_forest": {
+        "label": "随机森林",
+        "desc": "决策树集成模型"
+      },
+      "regresion_lineal": {
+        "label": "线性回归",
+        "desc": "经典线性模型"
+      },
+      "decision_tree": {
+        "label": "决策树",
+        "desc": "简单决策树"
+      },
+      "transformer_hibrido": {
+        "label": "混合 Transformer",
+        "desc": "多头注意力机制 + 集成模型（RF + GBR + LR + DT）+ Ridge 元学习器"
+      }
+    },
+    "climas": {
+      "soleado": "☀️ 晴天",
+      "nublado": "⛅ 多云",
+      "lluvia": "🌧️ 雨天"
+    },
+    "eventos": {
+      "normal": "正常",
+      "evento_local": "当地活动",
+      "feriado": "节假日"
+    },
+    "transformer": {
+      "titulo": "Transformer 超参数",
+      "cabezas_label": "注意力头数",
+      "dk_label": "d_k（键维度）",
+      "resumen": "{{nHeads}} 个注意力头 × d_k={{dK}} → 共 {{total}} 维注意力"
+    }
+  },
+  "eda_seccion": {
+    "titulo": "探索性数据分析",
+    "descripcion": "该菜品历史数据的描述性统计、数据质量、分布、季节性及相关性分析。",
+    "boton": "分析数据（EDA）",
+    "boton_cargando": "正在分析数据...",
+    "cargando_resultado": "正在生成探索性数据分析...",
+    "encabezado": "探索性数据分析 — {{plato}}"
+  },
+  "comparacion_seccion": {
+    "titulo": "自动比较（论文用）",
+    "descripcion": "使用自动选择的超参数比较 ARIMA、Prophet 和 Transformer 模型。只需选择菜品、天数、天气和活动。",
+    "boton": "自动比较模型",
+    "boton_cargando": "正在比较模型..."
+  },
+  "entrenamiento_seccion": {
+    "titulo": "完整实验（5 个模型）",
+    "descripcion": "ARIMA、Prophet、Holt-Winters、Transformer+RF 和 Transformer+GBR，配合交叉验证、超参数优化和统计检验（Friedman、Wilcoxon、Diebold-Mariano）。可能需要数十秒。",
+    "boton": "运行完整实验",
+    "boton_cargando": "训练中（可能需要一段时间）...",
+    "cargando_resultado": "正在运行完整实验...",
+    "cargando_detalle": "5 个模型、交叉验证、调优和统计检验 — 可能需要数十秒。"
+  },
+  "metricas_individuales": {
+    "titulo": "模型指标",
+    "mae_desc": "平均绝对误差",
+    "r2_desc": "拟合优度"
+  },
+  "estado_vacio": {
+    "titulo": "请选择一道菜品并执行预测",
+    "descripcion": "系统要求单项预测至少有 10 条历史记录，模型比较至少有 30 条历史记录。"
+  },
+  "prediccion": {
+    "grafico_titulo": "预计需求 vs. 建议产量",
+    "serie_demanda": "预计需求",
+    "serie_produccion": "建议产量",
+    "tabla_titulo": "每日明细",
+    "columnas": {
+      "fecha": "日期",
+      "demanda": "需求",
+      "produccion_rec": "建议产量",
+      "confianza": "置信度",
+      "riesgo": "风险"
+    },
+    "transformer": {
+      "titulo": "混合 Transformer — 架构",
+      "cabezas": "注意力头数：",
+      "dk": "d_k：",
+      "dim_total": "总维度：",
+      "pesos_titulo": "元学习器权重（Ridge）",
+      "peso": "权重",
+      "importancia_titulo": "特征重要性（内部 RF）",
+      "importancia": "重要性"
+    }
+  },
+  "comparacion": {
+    "titulo": "自动模型比较",
+    "subtitulo": "训练天数 {{entrenamiento}} 天 / 测试天数 {{prueba}} 天（按时间顺序划分）",
+    "modelo_ganador_label": "最佳模型",
+    "mae_ganador": "MAE = {{valor}}",
+    "metricas_titulo": "各模型误差指标",
+    "metricas_nota": "（数值越小 → 精度越高）",
+    "columnas": {
+      "modelo": "模型",
+      "mae": "MAE",
+      "rmse": "RMSE",
+      "mape": "MAPE (%)",
+      "r2": "R²",
+      "estado": "状态"
+    },
+    "badge_error": "错误",
+    "badge_ganador": "最佳",
+    "badge_evaluado": "已评估",
+    "nombres_modelos": {
+      "arima": "ARIMA",
+      "prophet": "Prophet",
+      "transformer_hibrido": "混合 Transformer"
+    },
+    "interpretacion_titulo": "结果解读",
+    "interpretacion_nota": "所选模型的平均误差最小，因此被认为最适合用于食物浪费预测。"
+  },
+  "pruebas_estadisticas": {
+    "dm_titulo": "Diebold-Mariano 检验 — 统计验证",
+    "dm_hipotesis": "H₀：预测精度相等",
+    "vs": "对比",
+    "estadistico_label": "DM 统计量",
+    "p_valor_label": "p 值",
+    "significativo_label": "是否显著",
+    "significativo_si": "是（p < 0.05）",
+    "significativo_no": "否"
+  },
+  "predicciones_futuras": {
+    "titulo": "未来预测 — {{modelo}}",
+    "subtitulo": "使用最佳模型及自动超参数生成",
+    "columnas": {
+      "fecha": "日期",
+      "demanda_est": "预计需求",
+      "produccion_rec": "建议产量",
+      "riesgo": "浪费风险"
+    }
+  }
+}

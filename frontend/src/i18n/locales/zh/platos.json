@@ -1,0 +1,26 @@
+{
+  "titulo": "菜品",
+  "subtitulo": "菜单管理",
+  "boton_nuevo": "新增菜品",
+  "confirmar_eliminar": "确定删除该菜品吗？",
+  "tabla": {
+    "nombre": "名称",
+    "categoria": "类别",
+    "precio": "价格",
+    "costo": "成本",
+    "tiempo": "时间（分钟）"
+  },
+  "modal": {
+    "nuevo": "新增菜品",
+    "editar": "编辑菜品"
+  },
+  "formulario": {
+    "nombre": "名称",
+    "categoria": "类别",
+    "seleccionar": "请选择...",
+    "precio_venta": "销售价格 (S/)",
+    "costo_estimado": "预估成本 (S/)",
+    "tiempo_preparacion": "制作时间（分钟）",
+    "descripcion": "描述"
+  }
+}

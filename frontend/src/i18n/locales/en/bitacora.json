@@ -1,0 +1,23 @@
+{
+  "titulo": "Log",
+  "subtitulo": "System activity log",
+  "filtros": {
+    "modulo": "Module",
+    "modulo_placeholder": "Filter module...",
+    "resultado": "Result",
+    "todos": "All",
+    "exito": "Success",
+    "error": "Error",
+    "advertencia": "Warning"
+  },
+  "tabla": {
+    "fecha": "Date",
+    "hora": "Time",
+    "usuario": "User",
+    "rol": "Role",
+    "modulo": "Module",
+    "accion": "Action",
+    "descripcion": "Description",
+    "resultado": "Result"
+  }
+}

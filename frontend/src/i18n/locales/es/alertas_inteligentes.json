@@ -1,0 +1,72 @@
+{
+  "titulo": "Alertas Inteligentes",
+  "subtitulo": "Motor interno de alertas preventivas — sin dependencias externas",
+  "config": {
+    "clima": "Clima",
+    "clima_opciones": {
+      "soleado": "Soleado",
+      "nublado": "Nublado",
+      "lluvioso": "Lluvioso"
+    },
+    "evento": "Evento",
+    "evento_opciones": {
+      "sin_evento": "Sin evento",
+      "evento_local": "Evento local",
+      "feriado_nacional": "Feriado nacional"
+    },
+    "generar": "Generar alertas",
+    "generando": "Generando..."
+  },
+  "mensajes": {
+    "generadas": "Se generaron {{count}} alerta(s) nueva(s).",
+    "error_cargar": "Error al cargar alertas",
+    "error_generar": "Error al generar alertas"
+  },
+  "resumen": {
+    "total": "Total"
+  },
+  "filtros": {
+    "estado": "Estado",
+    "estados": {
+      "pendiente": "Pendientes",
+      "leida": "Leídas",
+      "resuelta": "Resueltas"
+    },
+    "tipo": "Tipo",
+    "nivel": "Nivel",
+    "todos": "Todos",
+    "limpiar": "Limpiar filtros"
+  },
+  "tipos": {
+    "RIESGO_SOBREPRODUCCION": "Sobreproducción",
+    "PRODUCTO_PROXIMO_VENCER": "Próximo a vencer",
+    "STOCK_EXCESIVO": "Stock excesivo",
+    "BAJA_DEMANDA": "Baja demanda",
+    "ALTO_DESPERDICIO": "Alto desperdicio",
+    "RECOMENDACION_MENU": "Recomendación menú",
+    "ALERTA_CRITICA": "Alerta crítica"
+  },
+  "lista": {
+    "cargando": "Cargando alertas...",
+    "vacio": "No hay alertas {{estado}} con los filtros seleccionados.",
+    "ayuda_generar": "Usa \"Generar alertas\" para analizar el estado actual del sistema."
+  },
+  "tarjeta": {
+    "riesgo": "{{valor}} % riesgo",
+    "ver_detalle": "Ver detalle",
+    "marcar_leida": "Marcar leída",
+    "resolver": "Resolver"
+  },
+  "modal": {
+    "descripcion": "Descripción",
+    "recomendacion": "Recomendación operativa",
+    "plato": "Plato",
+    "insumo": "Insumo",
+    "porcentaje_riesgo": "% Riesgo",
+    "valor_actual": "Valor actual",
+    "generada": "Generada",
+    "estado": "Estado",
+    "marcar_leida": "Marcar leída",
+    "resolver_alerta": "Resolver alerta"
+  }
+}

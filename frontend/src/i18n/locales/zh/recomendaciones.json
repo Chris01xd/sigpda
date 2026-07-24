@@ -1,0 +1,14 @@
+{
+  "titulo": "AI 建议",
+  "subtitulo": "基于数据的智能建议",
+  "modulo_label": "模块",
+  "sin_alertas": {
+    "titulo": "暂无活动警报",
+    "detalle": "系统目前未检测到严重问题"
+  },
+  "prioridad": {
+    "alta": "高优先级",
+    "media": "中等优先级",
+    "baja": "提示信息"
+  }
+}

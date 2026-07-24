@@ -1,0 +1,30 @@
+{
+  "titulo": "Lista de Pedidos Sugeridos",
+  "subtitulo": "Calculado en base a ventas promedio e inventario actual",
+  "proyeccion": "Proyección:",
+  "dias_sufijo": "días",
+  "calculando": "Calculando pedidos...",
+  "kpi": {
+    "insumos_a_pedir": "Insumos a pedir",
+    "proximos_dias": "próximos {{dias}} días",
+    "costo_estimado": "Costo estimado",
+    "total_pedido": "total del pedido",
+    "proveedores": "Proveedores",
+    "distintos_a_contactar": "distintos a contactar"
+  },
+  "vacio": {
+    "titulo": "Stock suficiente para {{dias}} días",
+    "descripcion": "No se requieren pedidos adicionales con la proyección actual."
+  },
+  "grupo": {
+    "items_costo": "{{cantidad}} ítem(s) · S/ {{costo}}"
+  },
+  "tabla": {
+    "insumo": "Insumo",
+    "stock_actual": "Stock actual",
+    "necesario": "Necesario",
+    "a_pedir": "A pedir",
+    "unidad": "Unidad",
+    "costo_est": "Costo est."
+  }
+}

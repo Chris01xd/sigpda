@@ -1,0 +1,26 @@
+{
+  "titulo": "Platos",
+  "subtitulo": "Gestión del menú",
+  "boton_nuevo": "Nuevo Plato",
+  "confirmar_eliminar": "¿Eliminar plato?",
+  "tabla": {
+    "nombre": "Nombre",
+    "categoria": "Categoría",
+    "precio": "Precio",
+    "costo": "Costo",
+    "tiempo": "Tiempo (min)"
+  },
+  "modal": {
+    "nuevo": "Nuevo Plato",
+    "editar": "Editar Plato"
+  },
+  "formulario": {
+    "nombre": "Nombre",
+    "categoria": "Categoría",
+    "seleccionar": "Seleccionar...",
+    "precio_venta": "Precio venta (S/)",
+    "costo_estimado": "Costo estimado (S/)",
+    "tiempo_preparacion": "Tiempo preparación (min)",
+    "descripcion": "Descripción"
+  }
+}

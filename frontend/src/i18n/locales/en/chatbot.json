@@ -1,0 +1,15 @@
+{
+  "saludo_inicial": "Hi! I'm the SIGPDA assistant. I can help with waste, sales, production and forecasts. How can I help?",
+  "abrir": "Open SIGPDA assistant",
+  "titulo": "SIGPDA Assistant",
+  "subtitulo": "Restaurant waste and management",
+  "activar_voz": "Turn on voice replies",
+  "desactivar_voz": "Turn off voice replies",
+  "cerrar": "Close",
+  "pensando": "Thinking...",
+  "placeholder_escuchando": "Listening...",
+  "placeholder_escribir": "Type your question...",
+  "detener_grabacion": "Stop recording",
+  "hablar": "Talk to the assistant",
+  "error_generico": "Could not reach the chatbot. Please try again."
+}

@@ -1,0 +1,22 @@
+{
+  "titulo": "生产",
+  "subtitulo": "每日生产管理",
+  "registrar": "登记生产",
+  "tabla": {
+    "fecha": "日期",
+    "plato": "菜品",
+    "preparado": "已制作",
+    "vendido": "已售出",
+    "sobrante": "剩余",
+    "observaciones": "备注"
+  },
+  "formulario": {
+    "plato": "菜品 *",
+    "seleccionar": "请选择...",
+    "fecha": "日期",
+    "cantidad_preparada": "制作数量 *",
+    "cantidad_vendida": "销售数量",
+    "cantidad_sobrante": "剩余数量",
+    "observaciones": "备注"
+  }
+}

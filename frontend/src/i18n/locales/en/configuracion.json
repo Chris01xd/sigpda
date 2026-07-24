@@ -1,0 +1,30 @@
+{
+  "titulo": "Settings",
+  "subtitulo": "System parameters",
+  "guardado_correctamente": "Settings saved successfully",
+  "sin_configuraciones": "No settings registered",
+  "guardar": "Save",
+  "etiquetas": {
+    "notif_email_activa": "Email alerts active",
+    "notif_email_destino": "Alert recipient email",
+    "notif_email_remitente": "Sender email (Gmail)",
+    "notif_email_password": "Gmail app password",
+    "notif_whatsapp_activa": "WhatsApp alerts active",
+    "notif_telefono": "Recipient phone number (WhatsApp)",
+    "notif_twilio_sid": "Twilio – Account SID",
+    "notif_twilio_token": "Twilio – Auth Token",
+    "notif_twilio_numero": "Twilio – Sender WhatsApp number"
+  },
+  "whatsapp": {
+    "probar": "Test WhatsApp",
+    "enviando": "Sending...",
+    "descripcion": "Sends a test message using the saved Twilio configuration",
+    "error_generico": "Error connecting to the server"
+  },
+  "email": {
+    "probar": "Send test email",
+    "enviando": "Sending...",
+    "descripcion": "Sends a test email using the saved configuration",
+    "error_generico": "Error connecting to the server"
+  }
+}

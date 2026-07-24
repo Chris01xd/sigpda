@@ -1,0 +1,31 @@
+{
+  "titulo": "Restaurantes / PyMEs",
+  "subtitulo": "Establecimientos registrados",
+  "nuevo_restaurante": "Nuevo Restaurante",
+  "tabla": {
+    "nombre_comercial": "Nombre comercial",
+    "ruc": "RUC",
+    "responsable": "Responsable",
+    "telefono": "Teléfono",
+    "distrito": "Distrito",
+    "estado": "Estado"
+  },
+  "estado": {
+    "activo": "Activo",
+    "inactivo": "Inactivo"
+  },
+  "modal": {
+    "editar_titulo": "Editar Restaurante",
+    "nuevo_titulo": "Nuevo Restaurante",
+    "nombre_comercial": "Nombre comercial *",
+    "ruc": "RUC",
+    "responsable": "Responsable",
+    "telefono": "Teléfono",
+    "correo": "Correo",
+    "direccion": "Dirección",
+    "distrito": "Distrito",
+    "provincia": "Provincia",
+    "cancelar": "Cancelar",
+    "guardar": "Guardar"
+  }
+}

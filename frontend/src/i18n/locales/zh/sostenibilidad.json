@@ -1,0 +1,47 @@
+{
+  "titulo": "可持续性与环境影响",
+  "subtitulo": "食物浪费产生的碳足迹与水足迹",
+  "calculando": "计算中...",
+  "periodos": {
+    "dias_7": "7 天",
+    "dias_30": "30 天",
+    "dias_90": "90 天"
+  },
+  "kpi": {
+    "co2_equivalente": "CO₂ 当量",
+    "agua_desperdiciada": "浪费的水",
+    "alimentos_desperdiciados": "浪费的食物",
+    "costo_desperdiciado": "浪费的成本",
+    "ultimos_dias": "最近 {{dias}} 天"
+  },
+  "equivalencias": {
+    "titulo": "环境影响等效指标",
+    "arboles_linea1": "一年内所需的树木数量",
+    "arboles_linea2": "以吸收这些 CO₂",
+    "auto_linea1": "相当于汽车行驶的公里数",
+    "auto_linea2": "（平均 0.21 千克 CO₂/公里）",
+    "duchas_linea1": "相当于 8 分钟淋浴的次数",
+    "duchas_linea2": "（每次淋浴 65 升）",
+    "factores_emision": "排放系数：FAO / Our World in Data 2023"
+  },
+  "ahorro": {
+    "titulo": "经济节约",
+    "costo_actual": "本期成本",
+    "costo_anterior": "上期成本",
+    "ahorro_perdida": "节约 / 损失",
+    "porcentaje_mejora": "改善百分比",
+    "total_historico": "历史浪费总成本",
+    "mensaje_mejora": "与上一期相比，餐厅减少了 S/ {{monto}} 的浪费",
+    "mensaje_empeora": "与上一期相比，浪费增加了 S/ {{monto}}",
+    "mensaje_sin_cambio": "与上一期相比没有变化"
+  },
+  "categoria": {
+    "titulo": "按食物类别划分的影响",
+    "sin_datos": "该时段内无数据",
+    "tabla": {
+      "categoria": "类别",
+      "agua": "水",
+      "costo": "成本"
+    }
+  }
+}

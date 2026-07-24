@@ -13,6 +13,11 @@ export interface AuthState {
   token: string | null
 }
 
+export interface ChatMensaje {
+  rol: 'user' | 'assistant'
+  contenido: string
+}
+
 export interface Restaurante {
   id_restaurante: number
   nombre_comercial: string

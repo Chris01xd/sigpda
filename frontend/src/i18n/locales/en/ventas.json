@@ -1,0 +1,52 @@
+{
+  "titulo": "Sales",
+  "subtitulo": "Transaction records",
+  "nueva_venta": "New Sale",
+  "alerta_agregar_plato": "Add at least one dish",
+  "tabla": {
+    "numero": "No.",
+    "fecha": "Date",
+    "hora": "Time",
+    "tipo": "Type",
+    "cliente": "Customer",
+    "pago": "Payment",
+    "total": "Total"
+  },
+  "metodos": {
+    "efectivo": "Cash",
+    "tarjeta": "Card",
+    "yape": "Yape",
+    "plin": "Plin",
+    "transferencia": "Bank transfer"
+  },
+  "comprobantes": {
+    "ticket": "Receipt",
+    "boleta": "Sales slip",
+    "factura": "Invoice"
+  },
+  "modal_nueva_venta": {
+    "titulo": "New Sale",
+    "metodo_pago": "Payment method",
+    "comprobante": "Receipt type",
+    "cliente_opcional": "Customer (optional)",
+    "cliente_placeholder": "Customer name",
+    "documento_opcional": "Document (optional)",
+    "documento_placeholder": "ID / Tax ID",
+    "seleccionar_platos": "Select dishes",
+    "pedido": "Order",
+    "total_label": "Total:",
+    "registrar_venta": "Register Sale"
+  },
+  "modal_detalle": {
+    "titulo": "Sale No. {{numero}}",
+    "fecha": "Date:",
+    "hora": "Time:",
+    "comprobante": "Receipt:",
+    "pago": "Payment:",
+    "cliente": "Customer:",
+    "plato": "Dish",
+    "cantidad": "Qty.",
+    "subtotal": "Subtotal",
+    "total": "Total"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "titulo": "Production",
+  "subtitulo": "Daily production control",
+  "registrar": "Log Production",
+  "tabla": {
+    "fecha": "Date",
+    "plato": "Dish",
+    "preparado": "Prepared",
+    "vendido": "Sold",
+    "sobrante": "Leftover",
+    "observaciones": "Notes"
+  },
+  "formulario": {
+    "plato": "Dish *",
+    "seleccionar": "Select...",
+    "fecha": "Date",
+    "cantidad_preparada": "Quantity prepared *",
+    "cantidad_vendida": "Quantity sold",
+    "cantidad_sobrante": "Leftover quantity",
+    "observaciones": "Notes"
+  }
+}

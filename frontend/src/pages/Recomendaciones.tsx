@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { RefreshCw, AlertTriangle, Info, CheckCircle2, Clock } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import api from '../api/client'
 import { Recomendacion } from '../types'
 
@@ -22,6 +23,7 @@ const badgeMap: Record<string, string> = {
 }
 
 export default function Recomendaciones() {
+  const { t } = useTranslation(['recomendaciones', 'common'])
   const [recomendaciones, setRecomendaciones] = useState<Recomendacion[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -45,27 +47,27 @@ export default function Recomendaciones() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Recomendaciones IA</h1>
-          <p className="text-sm text-gray-500">Sugerencias inteligentes basadas en datos</p>
+          <h1 className="text-2xl font-bold text-gray-800">{t('titulo')}</h1>
+          <p className="text-sm text-gray-500">{t('subtitulo')}</p>
         </div>
         <button onClick={load} disabled={loading} className="btn-secondary flex items-center gap-2">
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-          Actualizar
+          {t('acciones.actualizar', { ns: 'common' })}
         </button>
       </div>
 
       {recomendaciones.length === 0 && !loading && (
         <div className="card flex flex-col items-center py-12 text-center">
           <CheckCircle2 className="w-12 h-12 text-green-400 mb-3" />
-          <p className="text-gray-600 font-medium">Sin alertas activas</p>
-          <p className="text-sm text-gray-400 mt-1">El sistema no detecta problemas críticos en este momento</p>
+          <p className="text-gray-600 font-medium">{t('sin_alertas.titulo')}</p>
+          <p className="text-sm text-gray-400 mt-1">{t('sin_alertas.detalle')}</p>
         </div>
       )}
 
       {[
-        { label: 'Alta prioridad', items: altas, key: 'alta' },
-        { label: 'Prioridad media', items: medias, key: 'media' },
-        { label: 'Informativas', items: bajas, key: 'baja' },
+        { label: t('prioridad.alta'), items: altas, key: 'alta' },
+        { label: t('prioridad.media'), items: medias, key: 'media' },
+        { label: t('prioridad.baja'), items: bajas, key: 'baja' },
       ].map(({ label, items, key }) =>
         items.length > 0 ? (
           <div key={key} className="mb-6">
@@ -82,7 +84,7 @@ export default function Recomendaciones() {
                       </span>
                     </div>
                     <p className="text-sm text-gray-600 mt-1">{r.descripcion}</p>
-                    <p className="text-xs text-gray-400 mt-2">Módulo: {r.modulo}</p>
+                    <p className="text-xs text-gray-400 mt-2">{t('modulo_label')}: {r.modulo}</p>
                   </div>
                 </div>
               ))}

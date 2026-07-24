@@ -1,0 +1,15 @@
+{
+  "saludo_inicial": "¡Hola! Soy el asistente de SIGPDA. Puedo ayudarte con desperdicio, ventas, producción y predicciones. ¿En qué te ayudo?",
+  "abrir": "Abrir asistente SIGPDA",
+  "titulo": "Asistente SIGPDA",
+  "subtitulo": "Desperdicio y gestión del restaurante",
+  "activar_voz": "Activar respuesta por voz",
+  "desactivar_voz": "Desactivar respuesta por voz",
+  "cerrar": "Cerrar",
+  "pensando": "Pensando...",
+  "placeholder_escuchando": "Escuchando...",
+  "placeholder_escribir": "Escribe tu pregunta...",
+  "detener_grabacion": "Detener grabación",
+  "hablar": "Hablar con el asistente",
+  "error_generico": "No se pudo contactar al chatbot. Intenta nuevamente."
+}

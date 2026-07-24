@@ -1,0 +1,33 @@
+{
+  "titulo": "Dashboard",
+  "subtitulo": "Real-time system overview",
+  "kpi": {
+    "ventas_mes": "Sales this month",
+    "ventas_hoy": "Sales today",
+    "transacciones": "transactions",
+    "costo_desperdicio_mes": "Waste cost (month)",
+    "stock_critico": "Critical stock",
+    "insumos_bajo_minimo": "supplies below minimum",
+    "alertas_criticas": "Critical alerts",
+    "pendientes_atencion": "pending attention"
+  },
+  "eficiencia": {
+    "titulo": "Operational Efficiency Index",
+    "produccion": "Production",
+    "alertas": "Alerts",
+    "desperdicio": "Waste"
+  },
+  "graficos": {
+    "ventas_30_dias": "Sales last 30 days",
+    "total": "Total",
+    "desperdicio_por_motivo": "Waste by reason",
+    "costo": "Cost",
+    "sin_datos_desperdicio": "No waste data",
+    "top_platos": "Top 10 best-selling dishes"
+  },
+  "alertas": {
+    "titulo": "Smart alerts",
+    "ver_todas": "View all",
+    "sin_pendientes": "No pending alerts"
+  }
+}

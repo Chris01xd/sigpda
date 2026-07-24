@@ -1,0 +1,29 @@
+{
+  "titulo": "Reportes",
+  "subtitulo": "Generación de reportes ejecutivos en PDF para dirección y análisis",
+  "descargado_ok": "Reporte descargado correctamente.",
+  "error_generar": "Error al generar el reporte. Verifica que haya datos registrados.",
+  "semanal": {
+    "titulo": "Reporte Ejecutivo Semanal",
+    "descripcion": "PDF con KPIs del período, huella de carbono e hídrica, top desperdicios por costo, ahorro económico comparativo y alertas inteligentes activas.",
+    "items": {
+      "resumen": "Resumen de la semana (registros y costos)",
+      "huella": "Huella ambiental — CO₂, agua, equivalencias",
+      "top_desperdicio": "Top platos con mayor desperdicio",
+      "ahorro": "Ahorro económico vs período anterior",
+      "alertas": "Alertas inteligentes pendientes",
+      "recomendaciones": "Recomendaciones operativas"
+    },
+    "generando": "Generando PDF...",
+    "descargar": "Descargar Reporte PDF"
+  },
+  "info": {
+    "titulo": "¿Para qué sirve este reporte?",
+    "dueno_label": "Para el dueño del restaurante:",
+    "dueno_texto": "resumen ejecutivo semanal con los indicadores más importantes sin necesidad de ingresar al sistema.",
+    "auditorias_label": "Para auditorías:",
+    "auditorias_texto": "evidencia documentada del control del desperdicio alimentario con métricas verificables.",
+    "tesis_label": "Para la tesis:",
+    "tesis_texto": "el reporte incluye la huella de carbono calculada con factores FAO 2023, alineado con los ODS 12 (Producción y Consumo Responsable)."
+  }
+}

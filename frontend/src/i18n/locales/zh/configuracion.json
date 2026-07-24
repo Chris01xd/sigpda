@@ -1,0 +1,30 @@
+{
+  "titulo": "系统设置",
+  "subtitulo": "系统参数",
+  "guardado_correctamente": "设置已成功保存",
+  "sin_configuraciones": "没有已注册的配置项",
+  "guardar": "保存",
+  "etiquetas": {
+    "notif_email_activa": "启用电子邮件提醒",
+    "notif_email_destino": "提醒接收邮箱",
+    "notif_email_remitente": "发件邮箱（Gmail）",
+    "notif_email_password": "Gmail 应用专用密码",
+    "notif_whatsapp_activa": "启用 WhatsApp 提醒",
+    "notif_telefono": "接收电话号码（WhatsApp）",
+    "notif_twilio_sid": "Twilio – Account SID",
+    "notif_twilio_token": "Twilio – Auth Token",
+    "notif_twilio_numero": "Twilio – 发送方 WhatsApp 号码"
+  },
+  "whatsapp": {
+    "probar": "测试 WhatsApp",
+    "enviando": "发送中...",
+    "descripcion": "使用已保存的 Twilio 配置发送测试消息",
+    "error_generico": "连接服务器时出错"
+  },
+  "email": {
+    "probar": "发送测试邮件",
+    "enviando": "发送中...",
+    "descripcion": "使用已保存的配置发送测试邮件",
+    "error_generico": "连接服务器时出错"
+  }
+}
