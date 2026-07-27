@@ -7,7 +7,7 @@ import {
   UtensilsCrossed, Package, BookOpen, ShoppingCart,
   Factory, Trash2, TrendingUp, BarChart3, ScrollText,
   Settings, Lightbulb, Brain, LogOut, ChefHat, BellRing,
-  Leaf, FileText, ShoppingBag,
+  Leaf, FileText, ShoppingBag, X,
 } from 'lucide-react'
 
 const allMenuItems = [
@@ -33,22 +33,38 @@ const allMenuItems = [
   { path: '/configuracion',  labelKey: 'nav.configuracion',  icon: Settings,  modulo: 'configuracion' },
 ]
 
-export default function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { user, logout, hasPermission } = useAuth()
   const { t } = useTranslation()
 
   const visibleItems = allMenuItems.filter((item) => hasPermission(item.modulo, 'ver'))
 
   return (
-    <aside className="w-64 bg-primary-900 text-white flex flex-col h-screen fixed left-0 top-0 z-20">
+    <aside
+      className={`w-64 bg-primary-900 text-white flex flex-col h-screen fixed left-0 top-0 z-30 transform transition-transform duration-200 ease-in-out md:translate-x-0 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}
+    >
       <div className="p-4 border-b border-primary-700 flex items-center gap-3">
         <div className="bg-primary-600 rounded-lg p-2">
           <ChefHat className="w-6 h-6" />
         </div>
-        <div>
+        <div className="flex-1 min-w-0">
           <h1 className="text-sm font-bold leading-tight">{t('app.nombre')}</h1>
           <p className="text-xs text-primary-300">{t('app.version')}</p>
         </div>
+        <button
+          onClick={onClose}
+          className="md:hidden p-1 rounded-lg hover:bg-primary-800 text-primary-200"
+          aria-label={t('sidebar.cerrar_menu', 'Cerrar menú')}
+        >
+          <X className="w-5 h-5" />
+        </button>
       </div>
 
       {user && (
@@ -65,6 +81,7 @@ export default function Sidebar() {
           <NavLink
             key={item.path}
             to={item.path}
+            onClick={onClose}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 transition-colors ${
                 isActive
